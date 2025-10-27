@@ -1,5 +1,6 @@
-from typing import Dict, Any
 import random
+from typing import Any, Dict
+
 
 class AnomalyDetector:
     """Dummy anomaly detector for screenshots and account behavior.
@@ -14,6 +15,14 @@ class AnomalyDetector:
     def predict(self, features: Dict[str, Any]) -> Dict[str, Any]:
         # 85% chance of no anomaly in dummy mode
         if random.random() < 0.85:
-            return {"anomaly": False, "type": "none", "confidence": round(random.uniform(0.9, 0.99), 2)}
+            return {
+                "anomaly": False,
+                "type": "none",
+                "confidence": round(random.uniform(0.9, 0.99), 2),
+            }
         else:
-            return {"anomaly": True, "type": random.choice(["captcha", "shadowban", "rate_limit"]), "confidence": round(random.uniform(0.6, 0.95), 2)}
+            return {
+                "anomaly": True,
+                "type": random.choice(["captcha", "shadowban", "rate_limit"]),
+                "confidence": round(random.uniform(0.6, 0.95), 2),
+            }

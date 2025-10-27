@@ -4,9 +4,10 @@ These functions simulate scraping metrics so the alerting system can run in
 dummy mode. Production implementations should replace these with real
 collectors (Prometheus, direct DB queries, etc.).
 """
-from typing import Dict, Any, List
+
 import random
 import time
+from typing import Any, Dict, List
 
 
 def scrape_ml_metrics() -> Dict[str, Any]:

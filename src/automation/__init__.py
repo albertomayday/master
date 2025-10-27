@@ -1,5 +1,5 @@
 """
-Automation Domain - Automatización y Orquestación  
+Automation Domain - Automatización y Orquestación
 Dominio para automatización de procesos, device farm y orquestación de tareas
 """
 

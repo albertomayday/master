@@ -1,0 +1,223 @@
+# Device Farm v5 - Optimized Production Requirements
+# Core dependencies for high-performance TikTok automation system
+
+# ================================================================
+# CORE DEPENDENCIES - CRITICAL FOR SYSTEM OPERATION
+# ================================================================
+
+# Web Framework & API
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+flask==3.0.0
+flask-cors==4.0.0
+gunicorn==21.2.0
+
+# Async & Concurrency
+asyncio-mqtt==0.13.0
+asyncpg==0.29.0
+aioredis==2.0.1
+aiofiles==23.2.1
+
+# Database & ORM
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+alembic==1.13.1
+
+# HTTP & Network
+httpx==0.25.2
+requests==2.31.0
+websockets==12.0
+
+# Configuration & Environment
+pydantic==2.5.0
+pydantic-settings==2.1.0
+python-dotenv==1.0.0
+
+# Logging & Monitoring
+loguru==0.7.2
+structlog==23.2.0
+
+# ================================================================
+# ML & COMPUTER VISION - HIGH PERFORMANCE INFERENCE
+# ================================================================
+
+# Core ML Dependencies
+torch==2.1.1
+torchvision==0.16.1
+ultralytics==8.0.196
+opencv-python==4.8.1.78
+Pillow==10.1.0
+numpy==1.24.4
+scipy==1.11.4
+
+# Image Processing
+scikit-image==0.22.0
+imageio==2.33.1
+
+# ================================================================
+# AUTOMATION & DEVICE CONTROL - OPTIMIZED FOR PERFORMANCE
+# ================================================================
+
+# Android Automation
+appium-python-client==3.1.0
+selenium==4.15.2
+webdriver-manager==4.0.1
+
+# System Monitoring
+psutil==5.9.6
+GPUtil==1.4.0
+
+# ================================================================
+# DATA PROCESSING & SERIALIZATION
+# ================================================================
+
+# Data Formats
+pyyaml==6.0.1
+orjson==3.9.10  # High-performance JSON
+msgpack==1.0.7
+pyarrow==14.0.1
+
+# Data Analysis (Lightweight)
+pandas==2.1.4
+polars==0.19.19  # Faster alternative to pandas for large data
+
+# ================================================================
+# NETWORK & PROXY MANAGEMENT
+# ================================================================
+
+# Proxy & Network
+aiohttp==3.9.1
+aiohttp-socks==0.8.4
+pysocks==1.7.1
+
+# GoLogin Integration
+pyppeteer==1.0.2
+
+# ================================================================
+# TASK SCHEDULING & QUEUE MANAGEMENT
+# ================================================================
+
+# Background Tasks
+celery==5.3.4
+redis==5.0.1
+kombu==5.3.4
+
+# Scheduling
+apscheduler==3.10.4
+croniter==2.0.1
+
+# ================================================================
+# SECURITY & ENCRYPTION
+# ================================================================
+
+# Cryptography
+cryptography==41.0.7
+bcrypt==4.1.2
+pyjwt==2.8.0
+
+# ================================================================
+# UTILITIES & HELPERS
+# ================================================================
+
+# CLI & Terminal
+click==8.1.7
+rich==13.7.0
+typer==0.9.0
+
+# Text Processing
+jinja2==3.1.2
+
+# Date & Time
+python-dateutil==2.8.2
+pytz==2023.3.post1
+
+# Validation
+cerberus==1.3.5
+
+# ================================================================
+# DEVELOPMENT & DEBUGGING (CONDITIONAL)
+# ================================================================
+
+# Development Tools (only in dev mode)
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+mypy==1.7.1
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+
+# Memory Profiling
+memory-profiler==0.61.0
+pympler==0.9.2
+
+# ================================================================
+# SPECIALIZED INTEGRATIONS
+# ================================================================
+
+# Supabase Integration
+supabase==2.0.2
+
+# Telegram Integration
+python-telegram-bot==20.7
+
+# n8n Workflow Integration
+n8n-python==0.1.0  # If available
+
+# ================================================================
+# PERFORMANCE OPTIMIZATION LIBRARIES
+# ================================================================
+
+# Numerical Computing
+numba==0.58.1  # JIT compilation for NumPy
+cython==3.0.6  # C extensions
+
+# Memory Management
+objgraph==3.6.0
+tracemalloc==1.0
+
+# ================================================================
+# MONITORING & OBSERVABILITY
+# ================================================================
+
+# Metrics & Monitoring
+prometheus-client==0.19.0
+grafana-api==1.0.3
+
+# Error Tracking
+sentry-sdk==1.38.0
+
+# ================================================================
+# CONTAINER & DEPLOYMENT
+# ================================================================
+
+# Container Support
+docker==6.1.3
+
+# Process Management
+supervisor==4.2.5
+
+# ================================================================
+# OPTIONAL: HIGH-PERFORMANCE ALTERNATIVES
+# ================================================================
+
+# Alternative JSON parser (if orjson not available)
+ujson==5.8.0
+
+# Alternative HTTP client (for specific use cases)
+httpcore==1.0.2
+
+# Alternative async framework components
+starlette==0.27.0
+
+# ================================================================
+# VERSION CONSTRAINTS & COMPATIBILITY
+# ================================================================
+
+# Python version requirement
+# python>=3.9,<3.13
+
+# Critical version pins for stability
+setuptools>=65.0.0
+wheel>=0.42.0
+pip>=23.0.0

@@ -2,11 +2,14 @@
 Supabase Integration - Core metrics and data management
 Handles YouTube, Spotify, Meta Ads metrics storage and retrieval
 """
+
 import asyncio
-from typing import Dict, Any, List, Optional
-from datetime import datetime, timedelta
 import json
+from datetime import datetime, timedelta
+from typing import Any, Dict, List, Optional
+
 import httpx
+
 from config.production_config import get_config
 
 config = get_config()
@@ -14,23 +17,25 @@ config = get_config()
 
 class SupabaseClient:
     """Supabase client for metrics and data management"""
-    
+
     def __init__(self):
         self.base_url = config.SUPABASE_URL
         self.anon_key = config.SUPABASE_ANON_KEY
         self.service_key = config.SUPABASE_SERVICE_KEY
-        
+
         self.headers = {
             "apikey": self.anon_key,
             "Authorization": f"Bearer {self.service_key}",
             "Content-Type": "application/json",
-            "Prefer": "return=representation"
+            "Prefer": "return=representation",
         }
-    
-    async def _request(self, method: str, endpoint: str, data: Optional[Dict] = None) -> Dict[str, Any]:
+
+    async def _request(
+        self, method: str, endpoint: str, data: Optional[Dict] = None
+    ) -> Dict[str, Any]:
         """Make authenticated request to Supabase"""
         url = f"{self.base_url}/rest/v1/{endpoint}"
-        
+
         async with httpx.AsyncClient() as client:
             if method.upper() == "GET":
                 response = await client.get(url, headers=self.headers)
@@ -40,10 +45,10 @@ class SupabaseClient:
                 response = await client.patch(url, headers=self.headers, json=data)
             elif method.upper() == "DELETE":
                 response = await client.delete(url, headers=self.headers)
-            
+
             response.raise_for_status()
             return response.json() if response.text else {}
-    
+
     # YouTube Metrics
     async def store_youtube_metrics(self, metrics: Dict[str, Any]) -> Dict[str, Any]:
         """Store YouTube channel/video metrics"""
@@ -61,18 +66,18 @@ class SupabaseClient:
             "cpm": metrics.get("cpm", 0),
             "metadata": metrics.get("metadata", {}),
             "recorded_at": datetime.utcnow().isoformat(),
-            "created_at": datetime.utcnow().isoformat()
+            "created_at": datetime.utcnow().isoformat(),
         }
-        
+
         return await self._request("POST", "youtube_metrics", data)
-    
+
     async def get_youtube_metrics(self, days: int = 30) -> List[Dict[str, Any]]:
         """Get YouTube metrics for specified period"""
         start_date = (datetime.utcnow() - timedelta(days=days)).isoformat()
         endpoint = f"youtube_metrics?recorded_at=gte.{start_date}&order=recorded_at.desc"
-        
+
         return await self._request("GET", endpoint)
-    
+
     # Spotify Metrics
     async def store_spotify_metrics(self, metrics: Dict[str, Any]) -> Dict[str, Any]:
         """Store Spotify track/artist metrics"""
@@ -89,18 +94,18 @@ class SupabaseClient:
             "revenue": metrics.get("revenue", 0),
             "metadata": metrics.get("metadata", {}),
             "recorded_at": datetime.utcnow().isoformat(),
-            "created_at": datetime.utcnow().isoformat()
+            "created_at": datetime.utcnow().isoformat(),
         }
-        
+
         return await self._request("POST", "spotify_metrics", data)
-    
+
     async def get_spotify_metrics(self, days: int = 30) -> List[Dict[str, Any]]:
         """Get Spotify metrics for specified period"""
         start_date = (datetime.utcnow() - timedelta(days=days)).isoformat()
         endpoint = f"spotify_metrics?recorded_at=gte.{start_date}&order=recorded_at.desc"
-        
+
         return await self._request("GET", endpoint)
-    
+
     # Meta Ads Metrics
     async def store_meta_ads_metrics(self, metrics: Dict[str, Any]) -> Dict[str, Any]:
         """Store Meta Ads campaign metrics"""
@@ -122,18 +127,18 @@ class SupabaseClient:
             "reach": metrics.get("reach", 0),
             "metadata": metrics.get("metadata", {}),
             "recorded_at": datetime.utcnow().isoformat(),
-            "created_at": datetime.utcnow().isoformat()
+            "created_at": datetime.utcnow().isoformat(),
         }
-        
+
         return await self._request("POST", "meta_ads_metrics", data)
-    
+
     async def get_meta_ads_metrics(self, days: int = 30) -> List[Dict[str, Any]]:
         """Get Meta Ads metrics for specified period"""
         start_date = (datetime.utcnow() - timedelta(days=days)).isoformat()
         endpoint = f"meta_ads_metrics?recorded_at=gte.{start_date}&order=recorded_at.desc"
-        
+
         return await self._request("GET", endpoint)
-    
+
     # Landing Page Metrics
     async def store_landing_page_metrics(self, metrics: Dict[str, Any]) -> Dict[str, Any]:
         """Store landing page performance metrics"""
@@ -151,11 +156,11 @@ class SupabaseClient:
             "locations": metrics.get("locations", {}),
             "metadata": metrics.get("metadata", {}),
             "recorded_at": datetime.utcnow().isoformat(),
-            "created_at": datetime.utcnow().isoformat()
+            "created_at": datetime.utcnow().isoformat(),
         }
-        
+
         return await self._request("POST", "landing_page_metrics", data)
-    
+
     # ML Processing Logs
     async def store_ml_processing_log(self, log_data: Dict[str, Any]) -> Dict[str, Any]:
         """Store ML processing results and performance"""
@@ -169,36 +174,36 @@ class SupabaseClient:
             "success": log_data.get("success", True),
             "error_message": log_data.get("error_message"),
             "metadata": log_data.get("metadata", {}),
-            "created_at": datetime.utcnow().isoformat()
+            "created_at": datetime.utcnow().isoformat(),
         }
-        
+
         return await self._request("POST", "ml_processing_logs", data)
-    
+
     # Comprehensive Analytics
     async def get_comprehensive_analytics(self, days: int = 30) -> Dict[str, Any]:
         """Get comprehensive analytics across all platforms"""
         youtube_data = await self.get_youtube_metrics(days)
         spotify_data = await self.get_spotify_metrics(days)
         meta_ads_data = await self.get_meta_ads_metrics(days)
-        
+
         return {
             "period_days": days,
             "generated_at": datetime.utcnow().isoformat(),
             "youtube": {
                 "total_records": len(youtube_data),
                 "latest_metrics": youtube_data[0] if youtube_data else None,
-                "data": youtube_data
+                "data": youtube_data,
             },
             "spotify": {
                 "total_records": len(spotify_data),
                 "latest_metrics": spotify_data[0] if spotify_data else None,
-                "data": spotify_data
+                "data": spotify_data,
             },
             "meta_ads": {
                 "total_records": len(meta_ads_data),
                 "latest_metrics": meta_ads_data[0] if meta_ads_data else None,
-                "data": meta_ads_data
-            }
+                "data": meta_ads_data,
+            },
         }
 
 
@@ -230,10 +235,10 @@ if __name__ == "__main__":
                 "video_id": "test_video_123",
                 "title": "Test Video",
                 "views": 1000,
-                "likes": 50
+                "likes": 50,
             }
-            
+
             result = await supabase_client.store_youtube_metrics(test_youtube)
             print("Test result:", result)
-    
+
     asyncio.run(test_supabase())

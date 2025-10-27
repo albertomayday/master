@@ -5,11 +5,10 @@ This module is part of the TikTok ML Branch system.
 Maintained as part of the universal automation platform.
 """
 
-from typing import Dict, Any, List
 import random
+from typing import Any, Dict, List
 
-
-__all__ = ['YoloScreenshotDetector', 'detect']
+__all__ = ["YoloScreenshotDetector", "detect"]
 
 
 class YoloScreenshotDetector:

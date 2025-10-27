@@ -4,8 +4,8 @@ Run this script to generate `ml_core/models/factory_prod_template.py` and
 `device_farm/controllers/factory_prod_template.py` which you can adapt when
 moving from dummy to production.
 """
-from pathlib import Path
 
+from pathlib import Path
 
 ML_TEMPLATE = '''"""Production factory template for models.
 
@@ -59,5 +59,5 @@ def main():
     print("   export ADB_CONTROLLER_IMPL=device_farm.controllers.my_adb.ADBController")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

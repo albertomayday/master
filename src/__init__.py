@@ -14,12 +14,7 @@ SYSTEM_CONFIG = {
     "platforms_supported": ["meta", "tiktok", "youtube", "twitter", "telegram"],
     "domains": ["campaigns", "analytics", "intelligence", "platforms", "automation", "shared"],
     "environment": "production-ready",
-    "dummy_mode": True  # Se cambia a False en producción real
+    "dummy_mode": True,  # Se cambia a False en producción real
 }
 
-__all__ = [
-    "__version__",
-    "__author__", 
-    "__description__",
-    "SYSTEM_CONFIG"
-]
+__all__ = ["__version__", "__author__", "__description__", "SYSTEM_CONFIG"]

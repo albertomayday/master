@@ -1,5 +1,6 @@
-from typing import Dict, Any, List
 import random
+from typing import Any, Dict, List
+
 
 class YoloVideoDetector:
     """Dummy wrapper for YOLO-based video analysis.

@@ -2,9 +2,10 @@
 
 In production, this should control a real browser instance (e.g., via CDP or Selenium).
 """
-from typing import Dict, Any
-import time
+
 import random
+import time
+from typing import Any, Dict
 
 
 class SeleniumWrapper:

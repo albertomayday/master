@@ -1,8 +1,9 @@
 from typing import Any
+
 from config.app_settings import get_env
 from scripts.import_by_path import import_by_path
 
-__all__ = ['get_adb_controller']
+__all__ = ["get_adb_controller"]
 
 
 def get_adb_controller(*args, **kwargs) -> Any:

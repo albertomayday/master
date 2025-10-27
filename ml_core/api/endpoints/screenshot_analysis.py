@@ -1,6 +1,7 @@
-from fastapi import APIRouter, File, UploadFile
-from typing import Dict, Any
 import time
+from typing import Any, Dict
+
+from fastapi import APIRouter, File, UploadFile
 
 from ml_core.models.factory import get_yolo_screenshot_detector
 

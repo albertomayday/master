@@ -3,32 +3,33 @@ Meta Ads Google Cloud Configuration
 Configuration and deployment setup for Meta Ads system on Google Cloud Platform
 """
 
-import os
 import json
 import logging
-from typing import Dict, Any, Optional, List
-from pathlib import Path
+import os
 from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
+
 class MetaAdsGCPConfig:
     """Google Cloud Platform configuration for Meta Ads system"""
-    
+
     def __init__(self):
         self.config_dir = Path(__file__).parent.parent.parent / "config" / "gcp"
         self.config_dir.mkdir(parents=True, exist_ok=True)
-        
+
     def create_gcp_deployment_config(self) -> Dict[str, Any]:
         """Create comprehensive GCP deployment configuration"""
-        
+
         config = {
             "project_info": {
                 "project_id": "${GCP_PROJECT_ID}",
                 "region": "${GCP_REGION}",
                 "zone": "${GCP_ZONE}",
                 "service_account": "${GCP_SERVICE_ACCOUNT}",
-                "billing_account": "${GCP_BILLING_ACCOUNT}"
+                "billing_account": "${GCP_BILLING_ACCOUNT}",
             },
             "compute_engine": {
                 "meta_ads_api": {
@@ -39,7 +40,7 @@ class MetaAdsGCPConfig:
                     "image_family": "ubuntu-2204-lts",
                     "image_project": "ubuntu-os-cloud",
                     "tags": ["meta-ads-api", "http-server", "https-server"],
-                    "startup_script": "startup-meta-ads.sh"
+                    "startup_script": "startup-meta-ads.sh",
                 },
                 "ml_processor": {
                     "name": "meta-ads-ml-vm",
@@ -51,8 +52,8 @@ class MetaAdsGCPConfig:
                     "image_family": "pytorch-latest-gpu",
                     "image_project": "deeplearning-platform-release",
                     "tags": ["meta-ads-ml", "ml-processor"],
-                    "startup_script": "startup-ml-processor.sh"
-                }
+                    "startup_script": "startup-ml-processor.sh",
+                },
             },
             "cloud_sql": {
                 "instance_name": "meta-ads-db",
@@ -63,11 +64,7 @@ class MetaAdsGCPConfig:
                 "username": "meta_ads_user",
                 "password": "${DB_PASSWORD}",
                 "backup_enabled": True,
-                "maintenance_window": {
-                    "day": 7,
-                    "hour": 2,
-                    "update_track": "stable"
-                }
+                "maintenance_window": {"day": 7, "hour": 2, "update_track": "stable"},
             },
             "cloud_storage": {
                 "buckets": {
@@ -78,27 +75,24 @@ class MetaAdsGCPConfig:
                         "lifecycle_rules": [
                             {
                                 "condition": {"age": 90},
-                                "action": {"type": "SetStorageClass", "storageClass": "NEARLINE"}
+                                "action": {"type": "SetStorageClass", "storageClass": "NEARLINE"},
                             }
-                        ]
+                        ],
                     },
                     "meta_ads_models": {
                         "name": "${GCP_PROJECT_ID}-meta-ads-models",
                         "location": "${GCP_REGION}",
                         "storage_class": "STANDARD",
-                        "versioning_enabled": True
+                        "versioning_enabled": True,
                     },
                     "meta_ads_logs": {
                         "name": "${GCP_PROJECT_ID}-meta-ads-logs",
                         "location": "${GCP_REGION}",
                         "storage_class": "COLDLINE",
                         "lifecycle_rules": [
-                            {
-                                "condition": {"age": 365},
-                                "action": {"type": "Delete"}
-                            }
-                        ]
-                    }
+                            {"condition": {"age": 365}, "action": {"type": "Delete"}}
+                        ],
+                    },
                 }
             },
             "cloud_run": {
@@ -118,8 +112,8 @@ class MetaAdsGCPConfig:
                         "GCS_BUCKET": "${GCP_PROJECT_ID}-meta-ads-data",
                         "META_APP_ID": "${META_APP_ID}",
                         "META_APP_SECRET": "${META_APP_SECRET}",
-                        "META_ACCESS_TOKEN": "${META_ACCESS_TOKEN}"
-                    }
+                        "META_ACCESS_TOKEN": "${META_ACCESS_TOKEN}",
+                    },
                 }
             },
             "cloud_functions": {
@@ -132,8 +126,8 @@ class MetaAdsGCPConfig:
                     "trigger": "https",
                     "env_vars": {
                         "META_WEBHOOK_SECRET": "${META_WEBHOOK_SECRET}",
-                        "DATABASE_URL": "postgresql://meta_ads_user:${DB_PASSWORD}@${DB_PRIVATE_IP}/meta_ads"
-                    }
+                        "DATABASE_URL": "postgresql://meta_ads_user:${DB_PASSWORD}@${DB_PRIVATE_IP}/meta_ads",
+                    },
                 },
                 "meta_optimization_scheduler": {
                     "name": "meta-optimization-scheduler",
@@ -143,27 +137,27 @@ class MetaAdsGCPConfig:
                     "timeout": "540s",
                     "trigger": "pubsub",
                     "topic": "meta-ads-optimization",
-                    "schedule": "0 */6 * * *"
-                }
+                    "schedule": "0 */6 * * *",
+                },
             },
             "pub_sub": {
                 "topics": {
                     "meta_ads_optimization": {
                         "name": "meta-ads-optimization",
-                        "message_retention_duration": "604800s"
+                        "message_retention_duration": "604800s",
                     },
                     "meta_ads_alerts": {
                         "name": "meta-ads-alerts",
-                        "message_retention_duration": "259200s"
-                    }
+                        "message_retention_duration": "259200s",
+                    },
                 },
                 "subscriptions": {
                     "optimization_worker": {
                         "name": "meta-ads-optimization-sub",
                         "topic": "meta-ads-optimization",
-                        "ack_deadline_seconds": 600
+                        "ack_deadline_seconds": 600,
                     }
-                }
+                },
             },
             "cloud_scheduler": {
                 "jobs": {
@@ -174,9 +168,9 @@ class MetaAdsGCPConfig:
                         "target": {
                             "pubsub_target": {
                                 "topic_name": "projects/${GCP_PROJECT_ID}/topics/meta-ads-optimization",
-                                "data": "eyJ0eXBlIjogImRhaWx5X29wdGltaXphdGlvbiJ9"
+                                "data": "eyJ0eXBlIjogImRhaWx5X29wdGltaXphdGlvbiJ9",
                             }
-                        }
+                        },
                     },
                     "hourly_monitoring": {
                         "name": "meta-ads-hourly-monitoring",
@@ -185,27 +179,25 @@ class MetaAdsGCPConfig:
                         "target": {
                             "http_target": {
                                 "uri": "https://meta-ads-api-${GCP_PROJECT_ID}.cloudfunctions.net/monitoring-check",
-                                "http_method": "POST"
+                                "http_method": "POST",
                             }
-                        }
-                    }
+                        },
+                    },
                 }
             },
             "monitoring": {
                 "notification_channels": {
                     "email_alerts": {
                         "type": "email",
-                        "labels": {
-                            "email_address": "${ALERT_EMAIL}"
-                        }
+                        "labels": {"email_address": "${ALERT_EMAIL}"},
                     },
                     "slack_alerts": {
                         "type": "slack",
                         "labels": {
                             "channel_name": "#meta-ads-alerts",
-                            "url": "${SLACK_WEBHOOK_URL}"
-                        }
-                    }
+                            "url": "${SLACK_WEBHOOK_URL}",
+                        },
+                    },
                 },
                 "alert_policies": {
                     "high_error_rate": {
@@ -214,13 +206,13 @@ class MetaAdsGCPConfig:
                             {
                                 "display_name": "Error rate > 5%",
                                 "condition_threshold": {
-                                    "filter": "resource.type=\"cloud_run_revision\"",
+                                    "filter": 'resource.type="cloud_run_revision"',
                                     "comparison": "COMPARISON_GREATER_THAN",
                                     "threshold_value": 0.05,
-                                    "duration": "300s"
-                                }
+                                    "duration": "300s",
+                                },
                             }
-                        ]
+                        ],
                     },
                     "database_connection_issues": {
                         "display_name": "Database Connection Issues",
@@ -228,15 +220,15 @@ class MetaAdsGCPConfig:
                             {
                                 "display_name": "DB connection failures > 10",
                                 "condition_threshold": {
-                                    "filter": "resource.type=\"cloudsql_database\"",
+                                    "filter": 'resource.type="cloudsql_database"',
                                     "comparison": "COMPARISON_GREATER_THAN",
                                     "threshold_value": 10,
-                                    "duration": "300s"
-                                }
+                                    "duration": "300s",
+                                },
                             }
-                        ]
-                    }
-                }
+                        ],
+                    },
+                },
             },
             "security": {
                 "firewall_rules": {
@@ -246,9 +238,7 @@ class MetaAdsGCPConfig:
                         "priority": 1000,
                         "source_ranges": ["0.0.0.0/0"],
                         "target_tags": ["meta-ads-api"],
-                        "allowed": [
-                            {"IPProtocol": "tcp", "ports": ["80", "443", "8000"]}
-                        ]
+                        "allowed": [{"IPProtocol": "tcp", "ports": ["80", "443", "8000"]}],
                     },
                     "allow_internal_ml": {
                         "name": "allow-internal-ml",
@@ -256,10 +246,8 @@ class MetaAdsGCPConfig:
                         "priority": 1000,
                         "source_tags": ["meta-ads-api"],
                         "target_tags": ["meta-ads-ml"],
-                        "allowed": [
-                            {"IPProtocol": "tcp", "ports": ["8080", "9000"]}
-                        ]
-                    }
+                        "allowed": [{"IPProtocol": "tcp", "ports": ["8080", "9000"]}],
+                    },
                 },
                 "iam": {
                     "service_accounts": {
@@ -270,20 +258,20 @@ class MetaAdsGCPConfig:
                                 "roles/cloudsql.client",
                                 "roles/storage.objectAdmin",
                                 "roles/pubsub.publisher",
-                                "roles/monitoring.metricWriter"
-                            ]
+                                "roles/monitoring.metricWriter",
+                            ],
                         },
                         "meta_ads_ml": {
-                            "account_id": "meta-ads-ml-sa", 
+                            "account_id": "meta-ads-ml-sa",
                             "display_name": "Meta Ads ML Service Account",
                             "roles": [
                                 "roles/storage.objectAdmin",
                                 "roles/ml.developer",
-                                "roles/monitoring.metricWriter"
-                            ]
-                        }
+                                "roles/monitoring.metricWriter",
+                            ],
+                        },
                     }
-                }
+                },
             },
             "networking": {
                 "vpc": {
@@ -291,8 +279,8 @@ class MetaAdsGCPConfig:
                     "subnet": {
                         "name": "meta-ads-subnet",
                         "ip_cidr_range": "10.0.0.0/24",
-                        "region": "${GCP_REGION}"
-                    }
+                        "region": "${GCP_REGION}",
+                    },
                 },
                 "load_balancer": {
                     "name": "meta-ads-lb",
@@ -301,22 +289,22 @@ class MetaAdsGCPConfig:
                         "path": "/system/health",
                         "port": 8000,
                         "check_interval_sec": 30,
-                        "timeout_sec": 10
+                        "timeout_sec": 10,
                     },
                     "ssl_certificate": {
                         "name": "meta-ads-ssl-cert",
-                        "domains": ["${META_ADS_DOMAIN}"]
-                    }
-                }
-            }
+                        "domains": ["${META_ADS_DOMAIN}"],
+                    },
+                },
+            },
         }
-        
+
         return config
-    
+
     def create_terraform_main(self) -> str:
         """Create Terraform main configuration file"""
-        
-        terraform_config = '''
+
+        terraform_config = """
 # Meta Ads Google Cloud Infrastructure
 # Terraform configuration for complete GCP deployment
 
@@ -652,14 +640,14 @@ output "storage_bucket_data" {
   description = "Data storage bucket name"
   value       = google_storage_bucket.meta_ads_data.name
 }
-'''
-        
+"""
+
         return terraform_config
-    
+
     def create_dockerfile(self) -> str:
         """Create Dockerfile for Meta Ads API"""
-        
-        dockerfile = '''
+
+        dockerfile = """
 # Meta Ads API Dockerfile for Google Cloud Run
 FROM python:3.11-slim
 
@@ -703,14 +691,14 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # Run the application
 CMD ["python", "-m", "ml_core.api_gateway", "--host", "0.0.0.0", "--port", "8000"]
-'''
-        
+"""
+
         return dockerfile
-    
+
     def create_cloudbuild_yaml(self) -> str:
         """Create Cloud Build configuration"""
-        
-        cloudbuild = '''
+
+        cloudbuild = """
 # Cloud Build configuration for Meta Ads API
 steps:
   # Build the Docker image
@@ -758,17 +746,19 @@ options:
 
 # Timeout
 timeout: '1200s'
-'''
-        
+"""
+
         return cloudbuild
-    
+
     def create_deployment_scripts(self) -> Dict[str, str]:
         """Create deployment scripts for GCP"""
-        
+
         scripts = {}
-        
+
         # Setup script
-        scripts['setup_gcp.sh'] = '''#!/bin/bash
+        scripts[
+            "setup_gcp.sh"
+        ] = """#!/bin/bash
 
 # Meta Ads GCP Setup Script
 set -e
@@ -835,10 +825,12 @@ echo "   export META_ACCESS_TOKEN=your_access_token"
 echo "   export DB_PASSWORD=your_db_password"
 echo "3. Run: terraform apply"
 echo "4. Build and deploy: ./deploy.sh"
-'''
+"""
 
-        # Deploy script  
-        scripts['deploy.sh'] = '''#!/bin/bash
+        # Deploy script
+        scripts[
+            "deploy.sh"
+        ] = """#!/bin/bash
 
 # Meta Ads Deployment Script
 set -e
@@ -900,10 +892,12 @@ echo "🎉 Deployment completed!"
 echo "📡 Service URL: $SERVICE_URL"
 echo "📊 Health check: $SERVICE_URL/system/health"
 echo "📚 API docs: $SERVICE_URL/docs"
-'''
+"""
 
         # Monitoring setup
-        scripts['setup_monitoring.sh'] = '''#!/bin/bash
+        scripts[
+            "setup_monitoring.sh"
+        ] = """#!/bin/bash
 
 # Meta Ads Monitoring Setup
 set -e
@@ -954,74 +948,74 @@ EOF
 gcloud alpha monitoring policies create --policy-from-file=alert_policy_error_rate.yaml
 
 echo "✅ Monitoring setup completed!"
-'''
+"""
 
         return scripts
-    
+
     def save_all_configs(self) -> Dict[str, str]:
         """Save all GCP configuration files"""
-        
+
         files_created = {}
-        
+
         # Create GCP directory structure
         gcp_dir = self.config_dir / "gcp"
         terraform_dir = gcp_dir / "terraform"
         scripts_dir = gcp_dir / "scripts"
-        
+
         for directory in [gcp_dir, terraform_dir, scripts_dir]:
             directory.mkdir(parents=True, exist_ok=True)
-        
+
         # Save main configuration
         config = self.create_gcp_deployment_config()
         config_file = gcp_dir / "meta_ads_gcp_config.json"
-        with open(config_file, 'w') as f:
+        with open(config_file, "w") as f:
             json.dump(config, f, indent=2)
-        files_created['config'] = str(config_file)
-        
+        files_created["config"] = str(config_file)
+
         # Save Terraform configuration
         terraform_config = self.create_terraform_main()
         terraform_file = terraform_dir / "main.tf"
-        with open(terraform_file, 'w') as f:
+        with open(terraform_file, "w") as f:
             f.write(terraform_config)
-        files_created['terraform'] = str(terraform_file)
-        
+        files_created["terraform"] = str(terraform_file)
+
         # Save Dockerfile
         dockerfile_content = self.create_dockerfile()
         dockerfile = Path(__file__).parent.parent.parent / "Dockerfile.gcp"
-        with open(dockerfile, 'w') as f:
+        with open(dockerfile, "w") as f:
             f.write(dockerfile_content)
-        files_created['dockerfile'] = str(dockerfile)
-        
+        files_created["dockerfile"] = str(dockerfile)
+
         # Save Cloud Build configuration
         cloudbuild_content = self.create_cloudbuild_yaml()
         cloudbuild_file = Path(__file__).parent.parent.parent / "cloudbuild.yaml"
-        with open(cloudbuild_file, 'w') as f:
+        with open(cloudbuild_file, "w") as f:
             f.write(cloudbuild_content)
-        files_created['cloudbuild'] = str(cloudbuild_file)
-        
+        files_created["cloudbuild"] = str(cloudbuild_file)
+
         # Save deployment scripts
         scripts = self.create_deployment_scripts()
         for script_name, script_content in scripts.items():
             script_file = scripts_dir / script_name
-            with open(script_file, 'w') as f:
+            with open(script_file, "w") as f:
                 f.write(script_content)
             # Make executable
             os.chmod(script_file, 0o755)
             files_created[script_name] = str(script_file)
-        
+
         # Create environment template
         env_template = self.create_gcp_env_template()
         env_file = gcp_dir / "gcp_production.env.template"
-        with open(env_file, 'w') as f:
+        with open(env_file, "w") as f:
             f.write(env_template)
-        files_created['env_template'] = str(env_file)
-        
+        files_created["env_template"] = str(env_file)
+
         return files_created
-    
+
     def create_gcp_env_template(self) -> str:
         """Create GCP environment variables template"""
-        
-        env_template = '''
+
+        env_template = """
 # Meta Ads Google Cloud Production Environment
 # Copy to .env and fill in your actual values
 
@@ -1113,24 +1107,27 @@ API_BURST_LIMIT=100
 MAX_WORKERS=10
 WORKER_MEMORY=2Gi
 WORKER_CPU=2
-'''
-        
+"""
+
         return env_template
+
 
 # Factory function
 def create_meta_ads_gcp_config() -> MetaAdsGCPConfig:
     """Create Meta Ads GCP configuration manager"""
     return MetaAdsGCPConfig()
 
+
 if __name__ == "__main__":
     # Generate all GCP configuration files
     config_manager = create_meta_ads_gcp_config()
-    
+
     print("☁️ Creating Meta Ads Google Cloud configuration...")
-    
+
     files_created = config_manager.save_all_configs()
-    
-    print(f"""
+
+    print(
+        f"""
 🎯 Meta Ads Google Cloud Setup Files Created:
 
 📋 Main Configuration: {files_created['config']}
@@ -1157,4 +1154,5 @@ Next steps for GCP deployment:
 - Cloud Functions for webhooks
 - Pub/Sub for async processing
 - Monitoring and alerting
-""")
+"""
+    )

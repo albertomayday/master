@@ -4,19 +4,18 @@ Sistema de integración TikTok con capacidades de cross-platform
 """
 
 from .musical_tiktok_system import (
-    TikTokMusicalGenre,
-    TikTokMusicalContext,
     TikTokCampaignConfig,
-    TikTokMusicalMLPredictor,
     TikTokMusicalCampaignOptimizer,
-    TikTokViralMetrics
+    TikTokMusicalContext,
+    TikTokMusicalGenre,
+    TikTokMusicalMLPredictor,
+    TikTokViralMetrics,
 )
-
 from .tiktok_cross_platform_system import (
+    CrossPlatformCampaignManager,
     TikTokCrossPlatformIntegration,
     TikTokMetaIntegration,
     TikTokYouTubeIntegration,
-    CrossPlatformCampaignManager
 )
 
 __version__ = "2.0.0"
@@ -32,7 +31,7 @@ DEFAULT_TIKTOK_CONFIG = {
     "viral_threshold": 0.75,
     "cross_platform_enabled": True,
     "meta_integration_enabled": True,
-    "youtube_boost_enabled": True
+    "youtube_boost_enabled": True,
 }
 
 # Géneros musicales soportados
@@ -41,30 +40,28 @@ SUPPORTED_GENRES = [genre.value for genre in TikTokMusicalGenre]
 # Métricas de integración cross-platform
 CROSS_PLATFORM_METRICS = [
     "tiktok_to_meta_conversion",
-    "meta_to_tiktok_retargeting", 
+    "meta_to_tiktok_retargeting",
     "youtube_boost_from_tiktok",
     "viral_cross_pollination",
     "audience_expansion_rate",
-    "platform_synergy_score"
+    "platform_synergy_score",
 ]
 
 __all__ = [
     # Core TikTok Musical System
     "TikTokMusicalGenre",
-    "TikTokMusicalContext", 
+    "TikTokMusicalContext",
     "TikTokCampaignConfig",
     "TikTokMusicalMLPredictor",
     "TikTokMusicalCampaignOptimizer",
     "TikTokViralMetrics",
-    
     # Cross-Platform Integration
     "TikTokCrossPlatformIntegration",
-    "TikTokMetaIntegration", 
+    "TikTokMetaIntegration",
     "TikTokYouTubeIntegration",
     "CrossPlatformCampaignManager",
-    
     # Configuration
     "DEFAULT_TIKTOK_CONFIG",
     "SUPPORTED_GENRES",
-    "CROSS_PLATFORM_METRICS"
+    "CROSS_PLATFORM_METRICS",
 ]

@@ -4,17 +4,19 @@ This module provides factory functions to create ML model instances,
 supporting both dummy implementations for development/testing and
 production implementations via environment variable configuration.
 """
+
 from typing import Any
-from config.app_settings import is_dummy_mode, get_env
+
+from config.app_settings import get_env, is_dummy_mode
 
 # Lazy import helper
 from scripts.import_by_path import import_by_path
 
 __all__ = [
-    'get_yolo_screenshot_detector',
-    'get_yolo_video_detector', 
-    'get_affinity_model',
-    'get_anomaly_detector'
+    "get_yolo_screenshot_detector",
+    "get_yolo_video_detector",
+    "get_affinity_model",
+    "get_anomaly_detector",
 ]
 
 
@@ -27,11 +29,12 @@ def _load_impl(env_var: str, default_callable):
     return default_callable
 
 
+from .affinity_model import AffinityModel as _AffinityDummy
+from .anomaly_detector import AnomalyDetector as _AnomalyDummy
+
 # Default dummy implementations
 from .yolo_screenshot import YoloScreenshotDetector as _YoloScreenshotDummy
 from .yolo_video import YoloVideoDetector as _YoloVideoDummy
-from .affinity_model import AffinityModel as _AffinityDummy
-from .anomaly_detector import AnomalyDetector as _AnomalyDummy
 
 
 def get_yolo_screenshot_detector(*args, **kwargs) -> Any:

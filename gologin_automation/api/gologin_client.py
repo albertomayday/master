@@ -3,13 +3,12 @@
 Simulates creation and management of browser profiles. Production code should
 wrap the real GoLogin HTTP API.
 """
-from typing import Dict, Any, List
-import uuid
+
 import time
+import uuid
+from typing import Any, Dict, List
 
-
-__all__ = ['GoLoginClient', 'create_profile', 'list_profiles', 'start_profile', 'stop_profile']
-
+__all__ = ["GoLoginClient", "create_profile", "list_profiles", "start_profile", "stop_profile"]
 
 
 class GoLoginClient:

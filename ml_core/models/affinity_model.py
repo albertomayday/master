@@ -1,5 +1,6 @@
-from typing import Dict, List
 import random
+from typing import Dict, List
+
 
 class AffinityModel:
     """Dummy affinity model that scores account pairs.

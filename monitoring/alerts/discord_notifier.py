@@ -2,9 +2,10 @@
 
 Does not make network calls; stores the last dispatched message for tests.
 """
-from typing import Dict, Any, Optional
+
 import json
 import logging
+from typing import Any, Dict, Optional
 
 logger = logging.getLogger(__name__)
 

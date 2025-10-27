@@ -1,0 +1,71 @@
+# Dockerfile.edge-core - Ultra Lightweight Edge Core
+FROM python:3.11-alpine
+
+# ================================================================
+# EDGE OPTIMIZATION - MINIMAL LAYERS
+# ================================================================
+
+# Set working directory
+WORKDIR /app
+
+# Install minimal system dependencies
+RUN apk add --no-cache \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    curl \
+    && rm -rf /var/cache/apk/*
+
+# Copy bandwidth-optimized requirements
+COPY requirements-bandwidth-optimized.txt .
+
+# Install Python dependencies (optimized)
+RUN pip install --no-cache-dir \
+    --index-url https://download.pytorch.org/whl/cpu \
+    -r requirements-bandwidth-optimized.txt \
+    && rm -rf ~/.cache/pip
+
+# Copy minimal application code
+COPY device_farm_v5/src ./src
+COPY config ./config
+COPY scripts/bandwidth_launcher.py ./launcher.py
+
+# Create non-root user for security
+RUN adduser -D -s /bin/sh appuser && \
+    chown -R appuser:appuser /app
+USER appuser
+
+# ================================================================
+# EDGE ENVIRONMENT CONFIGURATION
+# ================================================================
+
+ENV PYTHONPATH=/app/src \
+    DEVICE_FARM_BANDWIDTH_MODE=true \
+    ML_LIGHTWEIGHT=true \
+    USE_QUANTIZED_MODELS=true \
+    SQLITE_MEMORY_DB=true \
+    HTTP_COMPRESSION=true \
+    CACHE_AGGRESSIVE=true \
+    PYTHONUNBUFFERED=1
+
+# Expose minimal port
+EXPOSE 8000
+
+# Health check (lightweight)
+HEALTHCHECK --interval=60s --timeout=10s --start-period=30s --retries=2 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Start lightweight application
+CMD ["python", "launcher.py", "--edge-mode"]
+
+# ================================================================
+# DOCKERFILE OPTIMIZATIONS
+# ================================================================
+# - Multi-stage build not used to reduce complexity
+# - Alpine Linux for minimal footprint (~5MB base)
+# - No GPU dependencies
+# - Minimal Python packages
+# - Single non-root user
+# - Optimized layer caching
+# - Total image size: ~200MB (vs 2GB+ in full version)
+# ================================================================

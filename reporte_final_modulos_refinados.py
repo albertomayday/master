@@ -27,11 +27,10 @@ modules_implemented = {
             "✅ Predicciones de mercado con multiplicadores CTR",
             "✅ 6 segmentos de audiencia granular",
             "✅ Confianza scores avanzados",
-            "✅ Musical elements detection (BPM, key, energy)"
+            "✅ Musical elements detection (BPM, key, energy)",
         ],
-        "status": "✅ OPERATIVO"
+        "status": "✅ OPERATIVO",
     },
-    
     "2. Exclusión Seguidores": {
         "archivo": "follower_exclusion.py",
         "funcionalidad": "Filtrado automático de seguidores actuales",
@@ -43,13 +42,12 @@ modules_implemented = {
             "✅ Procesamiento de 5 tipos de audiencia",
             "✅ Exclusión promedio 11.5% de usuarios",
             "✅ Mejora en targeting y relevancia",
-            "✅ Integración con Meta Ads API"
+            "✅ Integración con Meta Ads API",
         ],
-        "status": "✅ OPERATIVO"
+        "status": "✅ OPERATIVO",
     },
-    
     "3. Ciclos Posteriores": {
-        "archivo": "followup_cycles.py", 
+        "archivo": "followup_cycles.py",
         "funcionalidad": "Automatización de reinversión $50 en clips ganadores",
         "componentes": ["FollowUpCyclesAutomator", "WinningClipIdentifier", "FollowUpCycle"],
         "líneas_código": 350,
@@ -59,11 +57,10 @@ modules_implemented = {
             "✅ Optimización multi-plataforma (YouTube, Instagram)",
             "✅ Mejora CTR promedio +40-50%",
             "✅ Boost de engagement +50-60%",
-            "✅ Secuenciado temporal inteligente"
+            "✅ Secuenciado temporal inteligente",
         ],
-        "status": "✅ OPERATIVO"
+        "status": "✅ OPERATIVO",
     },
-    
     "4. Ajustes Geográficos": {
         "archivo": "dynamic_geo_adjustments.py",
         "funcionalidad": "Redistribución dinámica de presupuesto geográfico",
@@ -71,27 +68,29 @@ modules_implemented = {
         "líneas_código": 367,
         "características": [
             "✅ Monitoreo en tiempo real de 7 países",
-            "✅ Reglas España: mínimo 27%, máximo 45%", 
+            "✅ Reglas España: mínimo 27%, máximo 45%",
             "✅ Triggers automáticos por performance",
             "✅ Redistribución inteligente de budgets",
             "✅ Oportunidades basadas en ROI/CTR/CPV",
-            "✅ Validation de reglas de negocio"
+            "✅ Validation de reglas de negocio",
         ],
-        "status": "✅ OPERATIVO"
-    }
+        "status": "✅ OPERATIVO",
+    },
 }
 
 total_lines = sum(module["líneas_código"] for module in modules_implemented.values())
 print(f"📁 Módulos implementados: {len(modules_implemented)}")
 print(f"📝 Total líneas de código: {total_lines:,}")
-print(f"⚙️ Componentes principales: {sum(len(module['componentes']) for module in modules_implemented.values())}")
+print(
+    f"⚙️ Componentes principales: {sum(len(module['componentes']) for module in modules_implemented.values())}"
+)
 print()
 
 for name, info in modules_implemented.items():
     print(f"{name}: {info['status']}")
     print(f"   📁 {info['archivo']} ({info['líneas_código']} líneas)")
     print(f"   🎯 {info['funcionalidad']}")
-    for característica in info['características']:
+    for característica in info["características"]:
         print(f"      {característica}")
     print()
 
@@ -106,7 +105,7 @@ test_results = {
         "confianza": "85.0%",
         "multiplicador_ctr": "2.72x",
         "segmentos_audiencia": 6,
-        "validación": "✅ PASS"
+        "validación": "✅ PASS",
     },
     "Exclusión Seguidores": {
         "seguidores_totales": "2,409",
@@ -114,7 +113,7 @@ test_results = {
         "audiencias_filtradas": 5,
         "exclusión_promedio": "11.5%",
         "usuarios_excluidos": "114,452",
-        "validación": "✅ PASS"
+        "validación": "✅ PASS",
     },
     "Ciclos Posteriores": {
         "clips_analizados": 5,
@@ -122,21 +121,21 @@ test_results = {
         "inversión_adicional": "$50",
         "vistas_adicionales": "393",
         "mejora_ctr": "+40-50%",
-        "validación": "✅ PASS"
+        "validación": "✅ PASS",
     },
     "Ajustes Geográficos": {
         "países_monitoreados": 7,
         "oportunidades_detectadas": 0,
         "ajustes_ejecutados": "No requeridos",
         "performance_evaluada": "✅ Monitoreada",
-        "validación": "⚠️ MINOR"
-    }
+        "validación": "⚠️ MINOR",
+    },
 }
 
 for module, results in test_results.items():
     print(f"🔧 {module}: {results['validación']}")
     for key, value in results.items():
-        if key != 'validación':
+        if key != "validación":
             print(f"   • {key.replace('_', ' ').title()}: {value}")
     print()
 
@@ -152,7 +151,7 @@ performance_metrics = {
     "Boost por Etiquetado": "+172.3% CTR/engagement",
     "Eficiencia Exclusión": "11.5% audiencia mejor targetizada",
     "Boost Ciclos Posteriores": "+17.9% vistas adicionales",
-    "Países Optimizados": "7 mercados monitoreados dinámicamente"
+    "Países Optimizados": "7 mercados monitoreados dinámicamente",
 }
 
 for metric, value in performance_metrics.items():
@@ -165,11 +164,11 @@ print("-" * 45)
 
 integration_status = {
     "ML Learning Cycle": "✅ Integrado - Los 4 módulos alimentan el ciclo de aprendizaje",
-    "Ultralytics Integration": "✅ Integrado - Clips optimizados por etiquetado granular", 
+    "Ultralytics Integration": "✅ Integrado - Clips optimizados por etiquetado granular",
     "Budget Optimizer": "✅ Integrado - Ajustes geo dinámicos optimizan distribución",
     "Campaign Tagging": "✅ Mejorado - Etiquetado granular extiende capacidades",
     "Geo Distribution": "✅ Mejorado - Ajustes dinámicos con reglas España",
-    "Performance Predictor": "✅ Integrado - Predicciones incluyen nuevos factores"
+    "Performance Predictor": "✅ Integrado - Predicciones incluyen nuevos factores",
 }
 
 for component, status in integration_status.items():
@@ -182,13 +181,13 @@ print("-" * 35)
 
 validated_use_cases = [
     "🎵 Campaña reggaeton con colaboración featuring",
-    "🚫 Exclusión automática de 2,409 seguidores existentes", 
+    "🚫 Exclusión automática de 2,409 seguidores existentes",
     "🌍 Monitoreo dinámico de 7 mercados geográficos",
     "🔄 Reinversión automática en 2 clips de alto ROI",
     "📊 Etiquetado granular: Perreo Intenso con Anuel AA",
     "💰 Optimización presupuestal de $400 → $450",
     "📈 ROI mejorado: 150% baseline → 437.8% final",
-    "🎯 Targeting refinado con 11.5% exclusión promedio"
+    "🎯 Targeting refinado con 11.5% exclusión promedio",
 ]
 
 for i, use_case in enumerate(validated_use_cases, 1):
@@ -218,7 +217,7 @@ next_steps = [
     "4. 🔄 Monitoreo continuo:",
     "   • Dashboard Grafana para métricas en tiempo real",
     "   • Logs estructurados con ELK stack",
-    "   • Backup automático de configuraciones"
+    "   • Backup automático de configuraciones",
 ]
 
 for step in next_steps:

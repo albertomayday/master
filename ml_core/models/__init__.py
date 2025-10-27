@@ -5,10 +5,10 @@ implementations should provide concrete classes that load YOLOv8 models and
 perform inference.
 """
 
-from .yolo_screenshot import YoloScreenshotDetector
-from .yolo_video import YoloVideoDetector
 from .affinity_model import AffinityModel
 from .anomaly_detector import AnomalyDetector
+from .yolo_screenshot import YoloScreenshotDetector
+from .yolo_video import YoloVideoDetector
 
 __all__ = [
     "YoloScreenshotDetector",

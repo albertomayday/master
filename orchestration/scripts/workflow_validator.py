@@ -1,5 +1,5 @@
 import json
-from typing import Dict, Any
+from typing import Any, Dict
 
 
 def validate_workflow(workflow: Dict[str, Any]) -> bool:
@@ -27,6 +27,7 @@ def load_and_validate(path: str) -> bool:
 
 if __name__ == "__main__":
     import sys
+
     ok = load_and_validate(sys.argv[1])
     print("VALID" if ok else "INVALID")
     sys.exit(0 if ok else 2)

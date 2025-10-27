@@ -2,8 +2,8 @@
 Auto-generated dummy imports for development mode
 This file provides dummy implementations for missing packages
 """
-import sys
 import os
+import sys
 
 DUMMY_MODE = os.getenv('DUMMY_MODE', 'true').lower() == 'true'
 

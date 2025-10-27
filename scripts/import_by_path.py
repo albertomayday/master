@@ -3,6 +3,7 @@
 Example: import_by_path('ml_core.models.yolo_screenshot.YoloScreenshotDetector')
 returns the class object.
 """
+
 import importlib
 from typing import Any
 

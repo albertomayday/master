@@ -2,9 +2,10 @@
 
 Keeps a list of recent alerts and supports registering notifier callbacks.
 """
-from typing import Dict, Any, List, Callable
-import time
+
 import threading
+import time
+from typing import Any, Callable, Dict, List
 
 
 class AlertManager:
@@ -16,7 +17,9 @@ class AlertManager:
     def register_notifier(self, fn: Callable[[Dict[str, Any]], None]):
         self._notifiers.append(fn)
 
-    def raise_alert(self, component: str, severity: str, message: str, details: Dict[str, Any] = None) -> Dict[str, Any]:
+    def raise_alert(
+        self, component: str, severity: str, message: str, details: Dict[str, Any] = None
+    ) -> Dict[str, Any]:
         alert = {
             "timestamp": time.time(),
             "component": component,

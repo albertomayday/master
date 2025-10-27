@@ -6,10 +6,11 @@ Maintained as part of the universal automation platform.
 """
 
 import os
-from typing import Optional, Dict, Any
-from fastapi import FastAPI, Depends, HTTPException
-from fastapi.security.api_key import APIKeyHeader
+from typing import Any, Dict, Optional
+
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
 
 api_key_header = APIKeyHeader(name="X-API-Key")
@@ -34,30 +35,29 @@ app = FastAPI(
         {"name": "Screenshot Analysis", "description": "Endpoints para analizar screenshots"},
         {"name": "Anomaly Detection", "description": "Endpoints para detectar anomalías"},
         {"name": "Posting Time", "description": "Endpoints para predecir momentos óptimos"},
-        {"name": "Affinity", "description": "Endpoints para calcular afinidad"}
-    ]
+        {"name": "Affinity", "description": "Endpoints para calcular afinidad"},
+    ],
 )
 
 # Dummy API key for development
 DUMMY_API_KEY = "dummy_development_key"
+
 
 # Schema para respuesta de error
 class ErrorResponse(BaseModel):
     error: str
     message: str
     details: Optional[Dict[str, Any]] = None
-    
+
     class Config:
         json_schema_extra = {
             "example": {
                 "error": "invalid_request",
                 "message": "Missing required field: account_id",
-                "details": {
-                    "field": "account_id",
-                    "code": "missing_field"
-                }
+                "details": {"field": "account_id", "code": "missing_field"},
             }
         }
+
 
 # CORS configuration
 app.add_middleware(
@@ -71,15 +71,17 @@ app.add_middleware(
 # Security check
 DUMMY_API_KEY = os.getenv("API_KEY", "dummy-key")
 
+
 async def verify_api_key(api_key: Optional[str] = Depends(api_key_header)):
     if api_key != DUMMY_API_KEY:
         raise HTTPException(status_code=403, detail="Invalid API Key")
     return api_key
 
+
 # Import routers (commented out for now - endpoints not implemented yet)
 # from ml_core.api.endpoints import (
 #     screenshot_analysis,
-#     anomaly_detection, 
+#     anomaly_detection,
 #     posting_predictor,
 #     affinity_calculator
 # )
@@ -90,13 +92,10 @@ async def verify_api_key(api_key: Optional[str] = Depends(api_key_header)):
 # app.include_router(posting_predictor.router, prefix="/api/v1", tags=["Posting Time"])
 # app.include_router(affinity_calculator.router, prefix="/api/v1", tags=["Affinity"])
 
+
 @app.get("/")
 async def root():
-    return {
-        "status": "ok",
-        "version": "0.1.0",
-        "mode": "dummy"
-    }
+    return {"status": "ok", "version": "0.1.0", "mode": "dummy"}
 
 
 @app.get("/health")

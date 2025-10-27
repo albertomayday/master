@@ -2,9 +2,11 @@
 
 This module shows how monitoring might detect problems and raise alerts.
 """
-from typing import Dict, Any
-from monitoring.metrics.scraper import scrape_all
+
+from typing import Any, Dict
+
 from monitoring.alerts.alert_manager import AlertManager
+from monitoring.metrics.scraper import scrape_all
 
 
 def run_health_checks(alert_manager: AlertManager) -> Dict[str, Any]:

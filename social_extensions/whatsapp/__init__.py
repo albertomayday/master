@@ -1,4 +1,5 @@
 """WhatsApp Business Automation Module"""
-from .whatsapp_automator import get_whatsapp_automator, WhatsAppAnalytics
 
-__all__ = ['get_whatsapp_automator', 'WhatsAppAnalytics']
+from .whatsapp_automator import WhatsAppAnalytics, get_whatsapp_automator
+
+__all__ = ["get_whatsapp_automator", "WhatsAppAnalytics"]

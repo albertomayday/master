@@ -2,20 +2,21 @@
 TikTok ML Automation System v4 - Production API
 Core integrations: n8n + Ultralytics + Meta Ads + Supabase + YouTube/Spotify
 """
-from fastapi import FastAPI, HTTPException, Depends, BackgroundTasks
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security.api_key import APIKeyHeader
-from fastapi.responses import JSONResponse
-from contextlib import asynccontextmanager
-from typing import Dict, Any, Optional
-import uvicorn
 import asyncio
+from contextlib import asynccontextmanager
 from datetime import datetime
+from typing import Any, Dict, Optional
+
+import uvicorn
+from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.security.api_key import APIKeyHeader
 
 # Configuration and integrations
 from config.production_config import get_config, validate_production_config
-from integrations.supabase_client import supabase_client, init_supabase_tables
 from integrations.meta_ads_client import meta_ads_client, test_meta_ads_connection
+from integrations.supabase_client import init_supabase_tables, supabase_client
 
 config = get_config()
 

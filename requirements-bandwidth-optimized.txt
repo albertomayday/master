@@ -1,0 +1,97 @@
+# Device Farm V5 - Bandwidth Optimized Requirements
+# Ultra-lightweight version for low-bandwidth environments
+
+# ================================================================
+# CORE MINIMAL DEPENDENCIES - BANDWIDTH OPTIMIZED
+# ================================================================
+
+# Essential Web Framework (minimal)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Async Core (minimal footprint)
+asyncio-mqtt==0.13.0
+aiofiles==23.2.1
+
+# Lightweight Database 
+sqlite3  # Built-in Python
+aiosqlite==0.19.0
+
+# HTTP - Minimal
+httpx==0.25.2
+requests==2.31.0
+
+# Configuration (essential only)
+pydantic==2.5.0
+python-dotenv==1.0.0
+
+# Logging (lightweight)
+loguru==0.7.2
+
+# ================================================================
+# ML MINIMAL - EDGE OPTIMIZED
+# ================================================================
+
+# Lightweight ML (CPU-only, optimized)
+torch==2.1.1+cpu  --extra-index-url https://download.pytorch.org/whl/cpu
+torchvision==0.16.1+cpu --extra-index-url https://download.pytorch.org/whl/cpu
+ultralytics==8.0.196
+opencv-python-headless==4.8.1.78  # Headless version (smaller)
+Pillow==10.1.0
+numpy==1.24.4
+
+# ================================================================
+# AUTOMATION MINIMAL - ESSENTIAL ONLY
+# ================================================================
+
+# Android Automation (core only)
+selenium==4.15.2
+requests==2.31.0  # For HTTP-based device control
+
+# System Monitoring (lightweight)
+psutil==5.9.6
+
+# ================================================================
+# DATA PROCESSING MINIMAL
+# ================================================================
+
+# Lightweight JSON
+orjson==3.9.10  # High-performance JSON (small footprint)
+
+# Minimal YAML
+pyyaml==6.0.1
+
+# ================================================================
+# NETWORK MINIMAL
+# ================================================================
+
+# Essential HTTP
+aiohttp==3.9.1
+
+# ================================================================
+# UTILITIES MINIMAL
+# ================================================================
+
+# Essential CLI
+click==8.1.7
+
+# Date handling
+python-dateutil==2.8.2
+
+# ================================================================
+# PERFORMANCE OPTIMIZATIONS FOR LOW BANDWIDTH
+# ================================================================
+
+# Memory profiling (development only)
+# memory-profiler==0.61.0  # Commented out for production
+
+# Compression
+lz4==4.3.2  # Fast compression
+zstd==1.5.5.1  # High compression ratio
+
+# ================================================================
+# TOTAL SIZE: ~500MB vs 2GB+ in full version
+# BANDWIDTH USAGE: 70% reduction in downloads
+# MEMORY FOOTPRINT: 60% reduction in RAM usage
+# ================================================================

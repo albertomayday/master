@@ -5,14 +5,13 @@ This module is part of the TikTok ML Branch system.
 Maintained as part of the universal automation platform.
 """
 
-from typing import Dict, Any, List
-from .factory import get_adb_controller
 import threading
 import time
+from typing import Any, Dict, List
 
+from .factory import get_adb_controller
 
-__all__ = ['DeviceManager', 'list', 'perform_action', 'broadcast', 'health_check']
-
+__all__ = ["DeviceManager", "list", "perform_action", "broadcast", "health_check"]
 
 
 class DeviceManager:
@@ -24,7 +23,9 @@ class DeviceManager:
     def list(self) -> List[Dict[str, Any]]:
         return self.adb.list_devices()
 
-    def perform_action(self, device_id: str, action: str, params: Dict[str, Any] = None) -> Dict[str, Any]:
+    def perform_action(
+        self, device_id: str, action: str, params: Dict[str, Any] = None
+    ) -> Dict[str, Any]:
         with self._lock:
             # In real system, we'd schedule actions; in dummy mode we directly call simulate
             return self.adb.simulate_action(device_id, action, params)
