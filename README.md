@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 # 🚀 TikTok Viral ML System V5 - Enterprise Edition
+=======
+# trigger build: $(date) build for COCO full image
+
+# 🚀 TikTok Viral ML System V3 - Community Manager (Despliegue Unificado)
+>>>>>>> main
 
 **Sistema de auto-viralización ML de última generación** para Community Managers profesionales. Combina **Device Farm v5**, **ML Core v4**, **Ultralytics YOLOv8**, **GoLogin Automation**, **Meta Ads AI** y **n8n Orchestration** para generar campañas virales automatizadas a escala empresarial.
 
@@ -67,6 +73,7 @@ python unified_system_v3.py \
   --yolo-confidence 0.85
 ```
 
+<<<<<<< HEAD
 ### **🎯 Control Inteligente de Carga V5:**
 - ✅ **Límite:** 3 campañas/día (balanceadas entre dispositivos)
 - ✅ **ML Threshold:** Videos con score > 0.85 (precisión mejorada)
@@ -160,7 +167,46 @@ python -m black --line-length 100 . && python -m isort --profile black .
 
 # Análisis de calidad con flake8
 python -m flake8 --max-line-length 100 --statistics .
+=======
+**Control de carga inteligente:**
+- ✅ Threshold: Solo videos con ML score > 0.70
+- ✅ Priorización: Por virality score (mejores primero)
+- ✅ Budget: $50 × 2 = $100/día max
+
+Ver documentación completa: [`docs/MONITOR_CHANNEL_MODE.md`](docs/MONITOR_CHANNEL_MODE.md)
+
+---
+
+### 1. **Configurar Credenciales**
+```bash
+**🚀 NUEVO: Setup Automático con APIs**
+```bash
+python scripts/configure_apis.py
 ```
+
+**📊 Estado Actual de APIs:**
+## ✅ Status Actual (Octubre 2025)
+
+- ✅ **YOLOv8**: 3 modelos listos para producción (77.5MB total)
+- ✅ **GoLogin**: Enterprise API configurada (1000 perfiles)
+- ✅ **Railway**: Deployment listo
+- ✅ **ML Core**: FastAPI operacional en puerto 8002  
+- ✅ **YouTube API**: Client ID + Secret + Channel ID configurados ✅
+- ✅ **YouTube Channel ID**: UCgohgqLVu1QPdfa64Vkrgeg ✅
+- ✅ **Supabase**: COMPLETAMENTE CONFIGURADO ✅ (ilsikngctkrmqnbutpuz.supabase.co)
+- ✅ **Sistema Meta ML**: Operativo al 100% 🧠
+./download-models.sh
+```
+# Build multiplataforma (requiere Docker Buildx)
+docker buildx build --platform linux/amd64,linux/arm64 -f docker/Dockerfile.unified-railway -t agora90/artista-dashboard:latest . --push
+>>>>>>> main
+```
+La imagen incluye:
+- API ML (FastAPI/Uvicorn, puerto 8000)
+- Dashboard interactivo (Streamlit, puerto 8501)
+- Device Farm, Meta Ads, scripts y módulos principales
+- YOLOv8 listo para inferencia (yolov8m.pt)
+- Descarga automática de COCO (puedes comentar la línea en el Dockerfile si no lo necesitas)
 
 ### **📊 Performance Monitoring**
 ```python
@@ -176,7 +222,10 @@ await start_performance_monitoring()
 # - Database query performance
 ```
 
+<<<<<<< HEAD
 ---
+=======
+>>>>>>> main
 
 ## 🚀 **LANZAMIENTO DE CAMPAÑAS V5**
 
@@ -442,18 +491,15 @@ PYTHONPATH=. pytest tests/e2e/
 
 ### **Access:**
 ```bash
-# Dashboard UI
-http://localhost:8501
 
-# Grafana
-http://localhost:3000
-User: admin
-Pass: viral_monitor_2025
+# Dashboard UI (Streamlit)
+http://localhost:8501 (local)
+o la URL pública de Railway
 
-# n8n
-http://localhost:5678
-User: admin
-Pass: viral_admin_2025
+
+# API ML (Swagger)
+http://localhost:8000/docs (local)
+o la URL pública de Railway `/docs`
 ```
 
 ---
@@ -463,6 +509,7 @@ Pass: viral_admin_2025
 ### **Completado:**
 - ✅ Docker V3 infrastructure (14 servicios)
 - ✅ ML Core (YOLOv8 analysis)
+- ✅ **Sistema Meta ML** 🧠 (España-LATAM optimization)
 - ✅ Meta Ads integration
 - ✅ YouTube uploader
 - ✅ Pixel Tracker
@@ -471,6 +518,7 @@ Pass: viral_admin_2025
 - ✅ Modo monitor-channel ⭐
 - ✅ Control de carga inteligente
 - ✅ Artista genérico para landing pages
+- ✅ **Cross-Platform ML Learning** (YouTube + Spotify + Meta)
 
 ### **Pendiente:**
 - ⏳ Runway ML integration (AI video generation)
@@ -557,13 +605,22 @@ python unified_system_v3.py \
   --max-campaigns-per-day 2
 ```
 
-**¡A ROMPER LAS RRSS! 🔥🎵🚀**
+
+---
+
+**Notas técnicas:**
+- El dashboard Streamlit es 100% interactivo y accesible desde cualquier navegador.
+- El build es cross-platform (amd64/arm64) y la imagen está lista para Railway, cloud o servidor propio.
+- El dataset COCO se descarga automáticamente durante el build (puedes desactivar la línea si falla en cloud o no lo necesitas).
+- Para solo inferencia con YOLOv8, no necesitas COCO, solo el modelo yolov8m.pt.
+
+---
 
 ---
 
 ## 📞 **Soporte**
 
-- **Issues:** [GitHub Issues](https://github.com/SPAYTK/master/issues)
+- **Issues:** [GitHub Issues](https://github.com/albertomayday/master/issues)
 - **Documentación:** Ver carpeta `/docs`
 - **Email:** (añade tu email de soporte aquí)
 
@@ -578,7 +635,7 @@ python unified_system_v3.py \
 ### **Inversión:**
 - Setup inicial: $0 (software open-source)
 - Budget mensual: $1,500-3,000 (Meta Ads)
-- Tiempo setup: 10 minutos
+- Tiempo setup: ~~10 minutos~~ **⚡ 30 segundos** (Meta-Centric)
 
 ### **Retorno:**
 - 15-30M views/mes (organic + paid)
@@ -587,3 +644,48 @@ python unified_system_v3.py \
 - Crecimiento canal: 50-80%/mes
 
 **ROI: 500-1000% en 3 meses** 🚀
+
+---
+
+## 🧠 **NUEVO: Sistema Meta ML (España-LATAM)**
+
+**Machine Learning Avanzado**: Sistema que aprende del rendimiento de Meta Ads, YouTube y Spotify para optimizar distribución geográfica España-LATAM automáticamente.
+
+### **🎯 Características ML:**
+- ✅ **Aprendizaje Cross-Platform**: YouTube + Spotify + Meta Ads
+- ✅ **Distribución Dinámica**: España 35% fijo, LATAM 65% variable
+- ✅ **Filtrado Inteligente**: Solo usuarios orgánicos de alta calidad
+- ✅ **Optimización Automática**: Redistribución basada en performance
+- ✅ **Exploración Controlada**: 20% presupuesto para nuevos mercados
+
+### **🚀 Quick Start Meta ML:**
+```bash
+# Windows
+.\scripts\Start-MetaML.ps1
+
+# Linux/Mac  
+./scripts/start_meta_ml.sh
+```
+
+**Resultado**: Optimización automática de campañas €400 con ML insights en tiempo real.
+
+### **📊 Dashboards:**
+- **Meta ML API**: http://localhost:8006
+- **Dashboard ML**: http://localhost:8501  
+- **Analytics**: Distribución España-LATAM en tiempo real
+
+---
+
+## 🆕 **Meta Ads-Centric Flow**
+
+**Revoluciona tu workflow**: Crea campañas Meta Ads y **automáticamente** lanza en todas las plataformas.
+
+```bash
+# Un solo comando → Ecosistema completo activo
+curl -X POST https://your-app.railway.app/campaigns/create-with-orchestration \
+  -d '{"name": "Mi Hit 2025", "daily_budget": 100, "auto_optimize": true}'
+
+# Resultado: YouTube + TikTok + Instagram + Twitter + Meta Ads ¡ACTIVOS!
+```
+
+**📊 Análisis completo**: [`META_CENTRIC_ARCHITECTURE.md`](META_CENTRIC_ARCHITECTURE.md)

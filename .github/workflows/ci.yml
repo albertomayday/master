@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cargar .env.dockerhub
+        id: dotenv
+        run: |
+          if [ -f .env.dockerhub ]; then
+            export $(grep -v '^#' .env.dockerhub | xargs)
+            echo "DOCKER_USER=$DOCKER_USER" >> $GITHUB_ENV
+            echo "DOCKER_PAT=$DOCKER_PAT" >> $GITHUB_ENV
+          fi
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          # Asegúrate de definir DOCKER_USER y DOCKER_PAT como variables de entorno o secrets en GitHub Actions
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ env.DOCKER_PAT }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile.unified-railway
+          push: true
+          tags: agora90/artista-dashboard:latest
+          platforms: linux/amd64,linux/arm64

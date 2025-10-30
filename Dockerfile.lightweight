@@ -1,0 +1,53 @@
+# 🚀 Stakas MVP - Ultra Lightweight for Railway
+FROM python:3.11-alpine
+
+# Metadata
+LABEL app="stakas-mvp-lightweight" 
+LABEL channel="UCgohgqLVu1QPdfa64Vkrgeg"
+LABEL optimization="minimal-bandwidth"
+
+# Set working directory
+WORKDIR /app
+
+# Install only essential system dependencies (minimal)
+RUN apk add --no-cache curl
+
+# Copy only essential requirements
+COPY requirements-ultra-minimal.txt ./
+
+# Install minimal Python packages (no compilation needed)
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements-ultra-minimal.txt
+
+# Copy production system files
+COPY unified_system_production.py ./
+COPY meta_ads_centric_system.py ./
+COPY app.py ./
+COPY scripts/ ./scripts/
+COPY config/ ./config/
+COPY data/ ./data/
+COPY ml_core/ ./ml_core/
+COPY device_farm/ ./device_farm/
+COPY gologin_automation/ ./gologin_automation/
+COPY monitoring/ ./monitoring/
+COPY orchestration/ ./orchestration/
+
+# Environment variables for production
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV STREAMLIT_SERVER_HEADLESS=true
+ENV STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+ENV STREAMLIT_SERVER_MAX_UPLOAD_SIZE=5
+
+# Expose port
+EXPOSE 8501
+
+# Lightweight health check
+HEALTHCHECK --interval=2m --timeout=10s --start-period=1m --retries=2 \
+    CMD curl -f http://localhost:${PORT:-8501}/_stcore/health || exit 1
+
+# Create production startup script
+COPY startup_production.py ./
+
+# Start with production system
+CMD ["python", "startup_production.py"]

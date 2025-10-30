@@ -1,66 +1,60 @@
-# TikTok ML Automation System - Fixed Dockerfile
-# Production-ready container for ML processing and automation
-
+# 🚀 Stakas Viral System - Railway Production
 FROM python:3.11-slim
 
-# System dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    gcc \
-    g++ \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+# Metadata
+LABEL app="stakas-viral-system"
+LABEL channel="UCgohgqLVu1QPdfa64Vkrgeg" 
+LABEL version="3.0-production"
 
+# Set working directory
 WORKDIR /app
 
-# Environment variables
-ENV DUMMY_MODE=true
-ENV PORT=8000
-ENV PYTHONPATH=/app
-ENV PYTHONUNBUFFERED=1
+# Install system dependencies compatible with Debian Trixie
+RUN apt-get update && apt-get install -y \
+    git wget curl build-essential \
+    libglib2.0-0 libsm6 libxext6 libxrender-dev \
+    libgomp1 libgl1-mesa-dev libglu1-mesa-dev \
+    libglfw3-dev libglew-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
-COPY requirements.txt ./
+# Copy requirements
+COPY requirements-railway.txt ./
+
+# Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements-railway.txt
 
-# Install ML dependencies
+# Install additional Railway-specific dependencies
 RUN pip install --no-cache-dir \
-    ultralytics==8.1.0 \
-    fastapi==0.104.1 \
-    uvicorn==0.24.0 \
-    python-dotenv==1.0.0 \
-    pydantic==2.4.2 \
-    httpx==0.25.0 \
-    python-multipart==0.0.6 \
-    pillow==10.1.0 \
-    torch \
-    torchvision \
-    opencv-python-headless \
-    numpy \
-    scikit-learn \
-    pandas \
-    prometheus-client==0.18.0 \
-    python-json-logger==2.0.7
+    fastapi \
+    uvicorn \
+    python-multipart \
+    aiofiles
 
 # Copy application code
 COPY . .
 
-# Create necessary directories
-RUN mkdir -p /app/data/models /app/logs /app/uploads
+# Set executable permissions for launcher
+RUN chmod +x railway_minimal_launcher.py
 
-# Create non-root user for security
-RUN useradd --create-home --shell /bin/bash --uid 1000 appuser && \
-    chown -R appuser:appuser /app
+# Create directories
+RUN mkdir -p data/models/production data/logs uploads cache
 
-USER appuser
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
-    CMD curl -f http://localhost:${PORT}/health || exit 1
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV DUMMY_MODE=false
+ENV ENVIRONMENT=production
+ENV STREAMLIT_SERVER_HEADLESS=true
+ENV STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
 
 # Expose port
-EXPOSE $PORT
+EXPOSE 8501
 
-# Start the application
-CMD ["python", "-m", "uvicorn", "ml_core.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-8501}/health || exit 1
+
+# Start Railway minimal launcher
+CMD ["python", "railway_minimal_launcher.py"]

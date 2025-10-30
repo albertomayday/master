@@ -1,7 +1,7 @@
 """
-Auto-generated dummy imports for development mode
-This file provides dummy implementations for missing packages
+Init file limpio para permitir importación y entrenamiento real con COCO y Ultralytics.
 """
+<<<<<<< HEAD
 import os
 import sys
 
@@ -167,3 +167,5 @@ if DUMMY_MODE:
         if name not in sys.modules:
             sys.modules[name] = module
             print(f"🎭 Dummy module loaded: {name}")
+=======
+>>>>>>> main

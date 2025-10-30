@@ -1,0 +1,21 @@
+name: Download OrbitaDriver for GoLogin
+
+on:
+  push:
+    branches: [ main, learn ]
+  pull_request:
+    branches: [ main, learn ]
+
+jobs:
+  download-orbitadriver:
+    runs-on: ubuntu-latest
+    steps:
+  # uses: <corrige aquí el valor correcto de la acción o elimina si no se usa>
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download OrbitaDriver
+        run: |
+          mkdir -p drivers/orbita
+          curl -L -o drivers/orbita/orbitadriver.exe https://github.com/gologinapp/OrbitaWebDriver/releases/latest/download/orbitadriver.exe
+      - name: List driver directory
+        run: ls -l drivers/orbita

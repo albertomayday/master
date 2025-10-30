@@ -78,19 +78,32 @@ async def verify_api_key(api_key: Optional[str] = Depends(api_key_header)):
     return api_key
 
 
-# Import routers (commented out for now - endpoints not implemented yet)
-# from ml_core.api.endpoints import (
-#     screenshot_analysis,
-#     anomaly_detection,
-#     posting_predictor,
-#     affinity_calculator
-# )
+# Import routers
+try:
+    from ml_core.api.endpoints import (
+        screenshot_analysis,
+        anomaly_detection,
+        posting_predictor,
+        affinity_calculator,
+        meta_ads_optimizer,
+        feedback
+    )
+    from ml_core.meta_automation.api import endpoints as meta_endpoints
+except ImportError as e:
+    # Fallback for dummy mode or partial builds
+    print(f"[WARNING] Some endpoints could not be imported: {e}")
 
-# Include routers (commented out until endpoints are implemented)
-# app.include_router(screenshot_analysis.router, prefix="/api/v1", tags=["Screenshot Analysis"])
-# app.include_router(anomaly_detection.router, prefix="/api/v1", tags=["Anomaly Detection"])
-# app.include_router(posting_predictor.router, prefix="/api/v1", tags=["Posting Time"])
-# app.include_router(affinity_calculator.router, prefix="/api/v1", tags=["Affinity"])
+    # Include routers
+    app.include_router(screenshot_analysis.router, prefix="/api/v1", tags=["Screenshot Analysis"])
+    app.include_router(anomaly_detection.router, prefix="/api/v1", tags=["Anomaly Detection"])
+    app.include_router(posting_predictor.router, prefix="/api/v1", tags=["Posting Time"])
+    app.include_router(affinity_calculator.router, prefix="/api/v1", tags=["Affinity"])
+    app.include_router(meta_endpoints.router, tags=["Meta Marketing Automation"])
+    app.include_router(meta_ads_optimizer.router, prefix="/api/v1", tags=["Meta Ads Optimizer"])
+    app.include_router(feedback.router, prefix="/api/v1", tags=["Feedback Integration"])
+except ImportError:
+    # Endpoints not implemented yet - running in basic mode
+    pass
 
 
 @app.get("/")
@@ -102,3 +115,24 @@ async def root():
 async def health():
     """Simple health endpoint used by docker healthchecks and orchestration."""
     return {"status": "healthy"}
+<<<<<<< HEAD
+=======
+
+
+if __name__ == "__main__":
+    import uvicorn
+    
+    # Auto-load .env
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+    
+    uvicorn.run(
+        app, 
+        host="0.0.0.0", 
+        port=int(os.getenv("PORT", 8000)),
+        log_level="info"
+    )
+>>>>>>> main
