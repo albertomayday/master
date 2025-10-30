@@ -172,7 +172,7 @@ class RailwayProductionSetup:
 2. Copy the Project ID from output
 
 📋 STEP 3: Add to GitHub Secrets
-1. Go to: https://github.com/albertomaydayjhondoe/master/settings/secrets/actions
+1. Go to: https://github.com/albertomayday/master/settings/secrets/actions
 2. Add these secrets:
    
    RAILWAY_TOKEN = <your_railway_token>

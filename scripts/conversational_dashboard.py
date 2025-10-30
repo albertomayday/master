@@ -1,14 +1,11 @@
-st.set_page_config(page_title="Community Manager Conversacional", layout="centered")
-st.title("🤖 Community Manager ML - Chat")
-st.write("Envía preguntas o comandos para recibir recomendaciones ML personalizadas para tu canal artístico.")
-st.info("Puedes pedir: recomendaciones de contenido, horarios óptimos, análisis de campañas, optimización de presupuesto, etc.")
+
+import streamlit as st
+import requests
 
 import streamlit as st
 import requests
 import os
 
-st.set_page_config(page_title="Asesor Artístico ML", layout="centered")
-st.title("🎨🤖 Asesor Artístico ML - Chat")
 
 API_URL = os.getenv("ML_CORE_API_URL", "https://your-railway-backend-url/".rstrip("/"))
 

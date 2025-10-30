@@ -145,7 +145,7 @@ All essential features for music industry professionals:
 
 ```bash
 # Deploy lightweight version
-git clone https://github.com/albertomaydayjhondoe/master.git
+git clone https://github.com/albertomayday/master.git
 cd master
 railway up --dockerfile Dockerfile.lightweight
 ```

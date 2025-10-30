@@ -1,3 +1,4 @@
+# trigger build: $(date) build for COCO full image
 
 # 🚀 TikTok Viral ML System V3 - Community Manager (Despliegue Unificado)
 
@@ -392,7 +393,7 @@ python unified_system_v3.py \
 
 ## 📞 **Soporte**
 
-- **Issues:** [GitHub Issues](https://github.com/SPAYTK/master/issues)
+- **Issues:** [GitHub Issues](https://github.com/albertomayday/master/issues)
 - **Documentación:** Ver carpeta `/docs`
 - **Email:** (añade tu email de soporte aquí)
 
