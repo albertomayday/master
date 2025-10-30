@@ -1,3 +1,6 @@
+git clone https://github.com/albertomaydayjhondoe/master.git
+pip install -r requirements-optimized.txt
+=======
 # TikTok Viral ML System V5 - Enterprise Edition
 
 **Sistema de auto-viralización ML de última generación** para Community Managers profesionales. Combina **Device Farm v5**, **ML Core v4**, **Ultralytics YOLOv8**, **GoLogin Automation**, **Meta Ads AI** y **n8n Orchestration** para generar campañas virales automatizadas a escala empresarial.
@@ -9,7 +12,7 @@
 
 ### **Pipeline Automatizado:**
 
-1. 🧠 **Análisis ML Avanzado** - YOLOv8 + Computer Vision (virality score 95%+ precisión)
+1. � **Análisis ML Avanzado** - YOLOv8 + Computer Vision (virality score 95%+ precisión)
 2. 📱 **Device Farm v5** - Control de 10+ dispositivos Android reales simultáneos
 3. 🌐 **GoLogin Automation** - Gestión de 30+ perfiles de navegador con rotación IP
 4. 🚀 **Multi-Platform Publishing** - TikTok, Instagram, YouTube, Twitter, Facebook
@@ -35,6 +38,7 @@
 
 ### **📊 Resultados Garantizados:**
 - 🎯 **1M+ views** en 7-14 días
+
 ### Control Inteligente de Carga V5:
 - Límite: 3 campañas/día (balanceadas entre dispositivos)
 - ML Threshold: Videos con score > 0.85 (precisión mejorada)
@@ -108,6 +112,7 @@ python scripts/production_control_cli.py --health-check --verbose
 ```
 
 ---
+
 ## ⚡ **OPTIMIZACIONES V5 ENTERPRISE**
 
 ### **🚀 Performance Improvements**
@@ -127,39 +132,6 @@ python -m black --line-length 100 . && python -m isort --profile black .
 
 # Análisis de calidad con flake8
 python -m flake8 --max-line-length 100 --statistics .
-=======
-**Control de carga inteligente:**
-- ✅ Threshold: Solo videos con ML score > 0.70
-- ✅ Priorización: Por virality score (mejores primero)
-- ✅ Budget: $50 × 2 = $100/día max
-
-Ver documentación completa: [`docs/MONITOR_CHANNEL_MODE.md`](docs/MONITOR_CHANNEL_MODE.md)
-
----
-
-### 1. **Configurar Credenciales**
-```bash
-**🚀 NUEVO: Setup Automático con APIs**
-```bash
-python scripts/configure_apis.py
-```
-
-**📊 Estado Actual de APIs:**
-## ✅ Status Actual (Octubre 2025)
-
-- ✅ **YOLOv8**: 3 modelos listos para producción (77.5MB total)
-- ✅ **GoLogin**: Enterprise API configurada (1000 perfiles)
-- ✅ **Railway**: Deployment listo
-- ✅ **ML Core**: FastAPI operacional en puerto 8002  
-- ✅ **YouTube API**: Client ID + Secret + Channel ID configurados ✅
-- ✅ **YouTube Channel ID**: UCgohgqLVu1QPdfa64Vkrgeg ✅
-- ✅ **Supabase**: COMPLETAMENTE CONFIGURADO ✅ (ilsikngctkrmqnbutpuz.supabase.co)
-- ✅ **Sistema Meta ML**: Operativo al 100% 🧠
-./download-models.sh
-```
-# Build multiplataforma (requiere Docker Buildx)
-docker buildx build --platform linux/amd64,linux/arm64 -f docker/Dockerfile.unified-railway -t agora90/artista-dashboard:latest . --push
->>>>>>> main
 ```
 La imagen incluye:
 - API ML (FastAPI/Uvicorn, puerto 8000)
@@ -649,3 +621,6 @@ curl -X POST https://your-app.railway.app/campaigns/create-with-orchestration \
 ```
 
 **📊 Análisis completo**: [`META_CENTRIC_ARCHITECTURE.md`](META_CENTRIC_ARCHITECTURE.md)
+=======
+# master
+>>>>>>> 8334a3019cc2f1cc8dcf1c8d28e4c422cb331036

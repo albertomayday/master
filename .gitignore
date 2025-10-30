@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -41,3 +42,9 @@ ENV/
 
 # Docker state
 docker-compose.override.yml
+# Google App Engine generated folder
+appengine-generated/
+=======
+# Google App Engine generated folder
+appengine-generated/
+>>>>>>> 8334a3019cc2f1cc8dcf1c8d28e4c422cb331036
