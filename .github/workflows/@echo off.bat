@@ -1,10 +1,8 @@
 @echo off
 REM Cross-platform batch script for building and running the artista-dashboard Docker image
-
 REM 1. Clean previous Docker builds (optional)
 echo Cleaning previous Docker builds...
 docker system prune -f
-
 REM 2. Build the Docker image
 echo Building Docker image...
 docker build -f docker/Dockerfile.ml-api -t artista-dashboard:latest .
