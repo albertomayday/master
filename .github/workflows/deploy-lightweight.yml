@@ -61,6 +61,7 @@ jobs:
         
     - name: 🎯 Set Railway Project Context
       run: |
+        # Asegúrate de definir RAILWAY_PROJECT_ID como secret en GitHub Actions
         if [ -n "${{ secrets.RAILWAY_PROJECT_ID }}" ]; then
           railway link -p ${{ secrets.RAILWAY_PROJECT_ID }}
         elif [ -n "$RAILWAY_PROJECT_ID" ]; then

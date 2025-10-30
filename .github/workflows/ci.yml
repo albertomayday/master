@@ -22,6 +22,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
+          # Asegúrate de definir DOCKER_USER y DOCKER_PAT como variables de entorno o secrets en GitHub Actions
           username: ${{ env.DOCKER_USER }}
           password: ${{ env.DOCKER_PAT }}
       - name: Set up Docker Buildx
