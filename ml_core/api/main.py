@@ -115,24 +115,3 @@ async def root():
 async def health():
     """Simple health endpoint used by docker healthchecks and orchestration."""
     return {"status": "healthy"}
-<<<<<<< HEAD
-=======
-
-
-if __name__ == "__main__":
-    import uvicorn
-    
-    # Auto-load .env
-    try:
-        from dotenv import load_dotenv
-        load_dotenv()
-    except ImportError:
-        pass
-    
-    uvicorn.run(
-        app, 
-        host="0.0.0.0", 
-        port=int(os.getenv("PORT", 8000)),
-        log_level="info"
-    )
->>>>>>> main

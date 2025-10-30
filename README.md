@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-# 🚀 TikTok Viral ML System V5 - Enterprise Edition
-=======
-# trigger build: $(date) build for COCO full image
-
-# 🚀 TikTok Viral ML System V3 - Community Manager (Despliegue Unificado)
->>>>>>> main
+# TikTok Viral ML System V5 - Enterprise Edition
 
 **Sistema de auto-viralización ML de última generación** para Community Managers profesionales. Combina **Device Farm v5**, **ML Core v4**, **Ultralytics YOLOv8**, **GoLogin Automation**, **Meta Ads AI** y **n8n Orchestration** para generar campañas virales automatizadas a escala empresarial.
 
@@ -41,52 +35,19 @@
 
 ### **📊 Resultados Garantizados:**
 - 🎯 **1M+ views** en 7-14 días
-- 💵 **ROI 300-500%** con $500 budget
-- 📈 **95%+ precision** en predicciones ML
-- ⚡ **<10s response** time promedio
+### Control Inteligente de Carga V5:
+- Límite: 3 campañas/día (balanceadas entre dispositivos)
+- ML Threshold: Videos con score > 0.85 (precisión mejorada)
+- Device Distribution: 10 dispositivos Android + 30 perfiles GoLogin
+- Budget Optimization: $100/día con distribución ML-driven
+- Real-time Monitoring: Grafana + Supabase analytics
+- Anomaly Detection: Shadowban detection automático
 
 ---
 
-## 🔥 **DEVICE FARM V5 + ML CORE V4 INTEGRATION**
+## Enterprise Quick Start (3 minutos)
 
-### **🚀 Quick Launch - Sistema Integrado**
-
-**Modo Automático Completo:**
-```bash
-# Lanzamiento con optimizaciones de performance
-./deploy-integrated-system.ps1 -Mode production -EnableOptimizations
-
-# O usando Python directamente
-python device_farm_v5/src/main.py --auto-start --ml-integration --performance-optimized
-```
-
-**Modo Monitor-Channel Avanzado:**
-```bash
-python unified_system_v3.py \
-  --mode monitor-channel \
-  --youtube-channel "UC_TuCanal" \
-  --device-farm-integration \
-  --ml-analysis-enabled \
-  --auto-launch \
-  --max-campaigns-per-day 3 \
-  --paid-budget 100.0 \
-  --yolo-confidence 0.85
-```
-
-<<<<<<< HEAD
-### **🎯 Control Inteligente de Carga V5:**
-- ✅ **Límite:** 3 campañas/día (balanceadas entre dispositivos)
-- ✅ **ML Threshold:** Videos con score > 0.85 (precisión mejorada)
-- ✅ **Device Distribution:** 10 dispositivos Android + 30 perfiles GoLogin
-- ✅ **Budget Optimization:** $100/día con distribución ML-driven
-- ✅ **Real-time Monitoring:** Grafana + Supabase analytics
-- ✅ **Anomaly Detection:** Shadowban detection automático
-
----
-
-## 📋 **Enterprise Quick Start (3 minutos)**
-
-### **🔧 1. Instalación Optimizada**
+### 1. Instalación Optimizada
 ```powershell
 # Clonación y setup automático
 git clone https://github.com/albertomaydayjhondoe/master.git
@@ -100,7 +61,7 @@ python -m venv .venv --upgrade-deps
 .\.venv\Scripts\activate
 ```
 
-### **⚙️ 2. Configuración Enterprise**
+### 2. Configuración Enterprise
 ```bash
 # Configurar credenciales (automatizado)
 ./setup-credentials.sh
@@ -113,17 +74,17 @@ export PERFORMANCE_MONITORING=true
 ```
 
 **Credenciales Requeridas:**
-- 🔐 **Meta Ads** (ACCESS_TOKEN, AD_ACCOUNT_ID, PIXEL_ID)
-- 📱 **GoLogin API** (30 perfiles premium)
-- 🤖 **Supabase** (analytics database)
-- 📊 **Device Farm** (10+ Android devices)
-- 🎬 **YouTube API** (CLIENT_ID, CLIENT_SECRET, CHANNEL_ID)
-- 🎤 **Artist Profile** (nombre, canales sociales) 
-- 🤖 **Runway ML** (opcional, AI video generation)
-- 🔗 **n8n webhooks** (orchestration automática)
-- 📢 **Telegram Bot** (alertas tiempo real)
+- Meta Ads (ACCESS_TOKEN, AD_ACCOUNT_ID, PIXEL_ID)
+- GoLogin API (30 perfiles premium)
+- Supabase (analytics database)
+- Device Farm (10+ Android devices)
+- YouTube API (CLIENT_ID, CLIENT_SECRET, CHANNEL_ID)
+- Artist Profile (nombre, canales sociales) 
+- Runway ML (opcional, AI video generation)
+- n8n webhooks (orchestration automática)
+- Telegram Bot (alertas tiempo real)
 
-### **🚀 3. Lanzamiento Sistema V5**
+### 3. Lanzamiento Sistema V5
 ```powershell
 # Opción A: Lanzamiento automático optimizado
 ./deploy-integrated-system.ps1 -Mode production -EnableOptimizations -SkipTests
@@ -135,7 +96,7 @@ python device_farm_v5/src/main.py --config-optimized --ml-integration
 docker-compose -f docker-compose.v4.yml up -d --build
 ```
 
-### **📊 4. Verificación y Monitoreo**
+### 4. Verificación y Monitoreo
 ```bash
 # Verificar sistema completo
 python scripts/production_control_cli.py --health-check --verbose
@@ -147,7 +108,6 @@ python scripts/production_control_cli.py --health-check --verbose
 ```
 
 ---
-
 ## ⚡ **OPTIMIZACIONES V5 ENTERPRISE**
 
 ### **🚀 Performance Improvements**
