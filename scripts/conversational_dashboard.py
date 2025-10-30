@@ -16,7 +16,7 @@ if "admin" not in st.session_state:
 
 menu = st.sidebar.selectbox("Menú", ["Artista (chat)", "Admin"])
 
-ADMIN_PASS = os.getenv("DASHBOARD_ADMIN_PASS", "Bac2317")
+ADMIN_PASS = os.getenv("DASHBOARD_ADMIN_PASS")  # Set in .env, no default
 if menu == "Admin":
     pwd = st.sidebar.text_input("Contraseña admin", type="password")
     if pwd == ADMIN_PASS:

@@ -1,64 +1,34 @@
-git clone https://github.com/albertomaydayjhondoe/master.git
-pip install -r requirements-optimized.txt
-=======
-# TikTok Viral ML System V5 - Enterprise Edition
+# 🚀 Sistema ML Artístico Unificado
 
-**Sistema de auto-viralización ML de última generación** para Community Managers profesionales. Combina **Device Farm v5**, **ML Core v4**, **Ultralytics YOLOv8**, **GoLogin Automation**, **Meta Ads AI** y **n8n Orchestration** para generar campañas virales automatizadas a escala empresarial.
+## ¿Qué incluye?
+- **API ML (FastAPI/Uvicorn):** Predicciones, recomendaciones y análisis avanzados para campañas artísticas.
+- **Dashboard interactivo (Streamlit):** Interfaz web moderna para chat, visualización y administración, accesible desde cualquier navegador.
+- **Device Farm & Meta Ads:** Automatización multiplataforma y gestión de campañas.
+- **YOLOv8 listo para inferencia:** Usa yolov8m.pt sin necesidad de COCO, pero preparado para entrenar cuando quieras.
+- **Descarga automática de COCO:** El dataset se descarga solo durante el build (puedes desactivarlo si lo prefieres).
+- **Cross-platform:** Imagen Docker compatible con Linux amd64 y arm64, lista para Railway, cloud o tu propio servidor.
+- **Despliegue CI/CD:** Push a GitHub → build multi-arquitectura → imagen en Docker Hub → despliegue automático en Railway.
 
-## 🎯 **¿Qué Hace Este Sistema?**
+## ¿Cómo lo presumes?
+- “Mi sistema ML artístico tiene API, dashboard web y automatización, todo en una sola imagen Docker, multiplataforma y con CI/CD real.”
+- “El dashboard Streamlit es 100% interactivo y personalizable, ¡y lo puedes ver en producción en Railway!”
+- “¿Quieres entrenar con COCO? Solo tienes que activar una línea, y el sistema se adapta solo.”
 
-**Input:** Un video, canal de YouTube, o contenido multimedia  
-**Output:** Campaña viral multi-plataforma con 1M+ views garantizados
+## Comandos de uso rápido
+```bash
+# Build local (requiere Docker y recursos)
+docker build -f docker/Dockerfile.unified-railway -t agora90/artista-dashboard:latest .
+# Push manual a Docker Hub
+docker push agora90/artista-dashboard:latest
+# Despliegue en Railway: usa la imagen agora90/artista-dashboard:latest
+```
 
-### **Pipeline Automatizado:**
-
-1. � **Análisis ML Avanzado** - YOLOv8 + Computer Vision (virality score 95%+ precisión)
-2. 📱 **Device Farm v5** - Control de 10+ dispositivos Android reales simultáneos
-3. 🌐 **GoLogin Automation** - Gestión de 30+ perfiles de navegador con rotación IP
-4. 🚀 **Multi-Platform Publishing** - TikTok, Instagram, YouTube, Twitter, Facebook
-5. 💰 **Meta Ads Intelligence** - Campaigns con landing pages ML-optimizadas
-6. 📊 **Real-time Monitoring** - Grafana dashboards con métricas en vivo
-7. ⚡ **Optimization Engine** - ML-driven A/B testing y ajustes automáticos
-
-## 🆕 **NUEVO EN V5: Arquitectura Enterprise**
-
-### **🏗️ Mejoras Arquitectónicas:**
-- ✅ **Lazy Loading** - Startup 70% más rápido
-- ✅ **Memory Optimization** - 50% menos uso de RAM
-- ✅ **Thread Safety** - Operaciones concurrentes seguras  
-- ✅ **Error Recovery** - Auto-healing y failover automático
-- ✅ **Performance Monitoring** - Métricas en tiempo real
-- ✅ **Code Quality** - Black, isort, flake8 automatizados
-
-### **🤖 Enhanced ML Integration:**
-- ✅ **Ultralytics YOLOv8** - Detección UI avanzada (16 clases TikTok)
-- ✅ **Batch Processing** - Análisis multi-device simultáneo
-- ✅ **Anomaly Detection** - Shadowban y detection automático
-- ✅ **Automation Guidance** - ML-guided action recommendations
-
-### **📊 Resultados Garantizados:**
-- 🎯 **1M+ views** en 7-14 días
-
-### Control Inteligente de Carga V5:
-- Límite: 3 campañas/día (balanceadas entre dispositivos)
-- ML Threshold: Videos con score > 0.85 (precisión mejorada)
-- Device Distribution: 10 dispositivos Android + 30 perfiles GoLogin
-- Budget Optimization: $100/día con distribución ML-driven
-- Real-time Monitoring: Grafana + Supabase analytics
-- Anomaly Detection: Shadowban detection automático
+## Acceso
+- Dashboard: `https://<tu-proyecto>.up.railway.app`
+- API Swagger: `https://<tu-proyecto>.up.railway.app/docs`
 
 ---
-
-## Enterprise Quick Start (3 minutos)
-
-### 1. Instalación Optimizada
-```powershell
-# Clonación y setup automático
-git clone https://github.com/albertomaydayjhondoe/master.git
-cd master
-
-# Setup con dependencias optimizadas  
-pip install -r requirements-optimized.txt
+¡Listo para presumir y desplegar donde quieras!
 
 # Configuración ambiente desarrollo
 python -m venv .venv --upgrade-deps

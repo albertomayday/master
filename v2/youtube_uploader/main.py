@@ -29,11 +29,13 @@ app = FastAPI(
 # CONFIGURATION
 # ============================================
 
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")  # moved to .env
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")  # moved to .env
+EMAIL = os.getenv("EMAIL")  # moved to .env
 DUMMY_MODE = os.getenv("DUMMY_MODE", "true") == "true"
 YOUTUBE_CLIENT_ID = os.getenv("YOUTUBE_CLIENT_ID")
 YOUTUBE_CLIENT_SECRET = os.getenv("YOUTUBE_CLIENT_SECRET")
 YOUTUBE_REFRESH_TOKEN = os.getenv("YOUTUBE_REFRESH_TOKEN")
-YOUTUBE_CHANNEL_ID = os.getenv("YOUTUBE_CHANNEL_ID")
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 

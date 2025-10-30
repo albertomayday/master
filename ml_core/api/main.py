@@ -16,23 +16,27 @@ from pydantic import BaseModel
 api_key_header = APIKeyHeader(name="X-API-Key")
 
 app = FastAPI(
-    title="TikTok Viral ML System",
+    title="Sistema ML Artístico Unificado",
     description="""
-    Sistema de automatización TikTok basado en ML.
+    API ML para predicciones, recomendaciones y análisis avanzados en campañas artísticas.
+    - YOLOv8 listo para inferencia (usa yolov8m.pt, sin necesidad de COCO, pero preparado para entrenar)
+    - Descarga automática de COCO durante el build (puedes desactivarlo si lo prefieres)
+    - Dashboard interactivo (Streamlit) accesible desde cualquier navegador
+    - Device Farm & Meta Ads: automatización multiplataforma y gestión de campañas
+    - Imagen Docker multiplataforma (amd64/arm64), lista para Railway, cloud o servidor propio
+    - Despliegue CI/CD: push a GitHub → build multi-arquitectura → imagen en Docker Hub → despliegue automático en Railway
     
-    Este sistema proporciona endpoints para:
-    - Análisis de screenshots mediante YOLO
-    - Detección de anomalías y shadowbans
-    - Predicción de mejores momentos para publicar
-    - Cálculo de afinidad entre cuentas
+    Acceso rápido:
+    - Dashboard: https://<tu-proyecto>.up.railway.app
+    - API Swagger: https://<tu-proyecto>.up.railway.app/docs
     
-    Ver documentación detallada en docs/api_integration.md
+    Ver documentación detallada en README.md
     """,
-    version="0.1.0",
+    version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_tags=[
-        {"name": "Screenshot Analysis", "description": "Endpoints para analizar screenshots"},
+        {"name": "Screenshot Analysis", "description": "Endpoints para analizar screenshots artísticos"},
         {"name": "Anomaly Detection", "description": "Endpoints para detectar anomalías"},
         {"name": "Posting Time", "description": "Endpoints para predecir momentos óptimos"},
         {"name": "Affinity", "description": "Endpoints para calcular afinidad"},
