@@ -27,3 +27,13 @@ jobs:
           file: docker/Dockerfile.ml-api
           push: true
           tags: agora90/albertomayday:stakas
+
+      - name: Install build tools
+        run: |
+          pip install wheel
+          # Si falla algún paquete, instala los build tools:
+          # Abre PowerShell como administrador y ejecuta:
+          # (solo la primera vez)
+          Set-ExecutionPolicy Bypass -Scope Process -Force; `
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+          iex ((New-Object System.Net.WebClient).DownloadString('https://aka.ms/install-vsbuildtools.ps1'))
