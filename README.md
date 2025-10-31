@@ -593,3 +593,5 @@ curl -X POST https://your-app.railway.app/campaigns/create-with-orchestration \
 ```
 
 **📊 Análisis completo**: [`META_CENTRIC_ARCHITECTURE.md`](META_CENTRIC_ARCHITECTURE.md)
+#   t r i g g e r   w o r k f l o w  
+ 
