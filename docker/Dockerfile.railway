@@ -50,5 +50,5 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
 # Expose port
 EXPOSE $PORT
 
-# Default command (can be overridden by Procfile)
-CMD python -m uvicorn v2.meta_ads.meta_centric_orchestrator:app --host 0.0.0.0 --port $PORT
+# Default command: lanzar dashboard Gradio en el puerto $PORT
+CMD python dashboard_gradio.py --server.port $PORT --server.name 0.0.0.0
