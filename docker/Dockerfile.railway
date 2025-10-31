@@ -15,9 +15,8 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements first for better caching
 COPY requirements*.txt ./
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir -r requirements-dummy.txt
+# Install Python dependencies (production + ML + dashboard)
+RUN pip install --no-cache-dir -r requirements.txt -r requirements-ml.txt streamlit
 
 # Copy source code
 COPY . .
