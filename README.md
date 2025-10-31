@@ -1,3 +1,5 @@
+# ▶️ [Guía de transición a producción real COCO/ML (Checklist)](README_PROD_COCO_ML.md)
+# ▶️ [Checklist de validación Railway (Despliegue seguro, dummy/producción)](RAILWAY_DEPLOYMENT_CHECKLIST.md)
 # 🚀 Sistema ML Artístico Unificado
 
 ## ¿Qué incluye?
@@ -591,6 +593,3 @@ curl -X POST https://your-app.railway.app/campaigns/create-with-orchestration \
 ```
 
 **📊 Análisis completo**: [`META_CENTRIC_ARCHITECTURE.md`](META_CENTRIC_ARCHITECTURE.md)
-=======
-# master
->>>>>>> 8334a3019cc2f1cc8dcf1c8d28e4c422cb331036
