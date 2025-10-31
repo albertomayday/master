@@ -29,7 +29,7 @@ RUN mkdir -p /app/temp
 
 # Set environment variables
 ENV PYTHONPATH=/app
-ENV DUMMY_MODE=true
+ENV DUMMY_MODE=false
 ENV ENVIRONMENT=production
 
 # Health check
