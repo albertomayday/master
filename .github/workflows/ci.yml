@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set Docker Hub credentials (placeholder)
+      - name: Set Docker Hub credentials from secrets
         run: |
-          echo "DOCKER_USER=placeholder_user" >> $GITHUB_ENV
-          echo "DOCKER_PAT=placeholder_token" >> $GITHUB_ENV
-      - name: Log in to Docker Hub (placeholder)
+          echo "DOCKER_USER=${{ secrets.DOCKER_USER }}" >> $GITHUB_ENV
+          echo "DOCKER_PAT=${{ secrets.DOCKER_PAT }}" >> $GITHUB_ENV
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ env.DOCKER_USER }}
@@ -28,5 +28,5 @@ jobs:
           context: .
           file: docker/Dockerfile.unified-railway
           push: true
-          tags: agora90/artista-dashboard:latest
+          tags: agora90/stakas-mvp:latest
           platforms: linux/amd64,linux/arm64
