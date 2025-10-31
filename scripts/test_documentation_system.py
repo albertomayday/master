@@ -1,3 +1,9 @@
+# --- Ensure professional import style: always allow 'from scripts...' ---
+import sys
+import pathlib
+project_root = pathlib.Path(__file__).parent.parent.resolve()
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 #!/usr/bin/env python3
 """
 Test Documentation System
