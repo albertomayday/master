@@ -26,4 +26,4 @@ jobs:
           context: .
           file: docker/Dockerfile.ml-api
           push: true
-          tags: agora90/artista-dashboard:latest
+          tags: agora90/albertomayday:stakas
