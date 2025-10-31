@@ -1,8 +1,7 @@
+FROM python:3.11-slim
 # Descarga manual/dataset COCO:
 # - Oficial: https://cocodataset.org/#download
 # - Ultralytics: https://docs.ultralytics.com/datasets/detect/coco/
-RUN python /app/scripts/download_coco_dataset.py
-FROM python:3.11-slim
 WORKDIR /app
 # Dependencias del sistema
 RUN apt-get update && apt-get install -y \
@@ -26,6 +25,8 @@ COPY scripts /app/scripts
 COPY config /app/config
 COPY database /app/database
 COPY .env* /app/
+# Descargar COCO después de tener scripts disponibles
+RUN python /app/scripts/download_coco_dataset.py
 # Copiar configuración de supervisord
 COPY docker/supervisord.conf /etc/supervisord.conf
 # Crear directorios necesarios

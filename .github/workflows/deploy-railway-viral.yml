@@ -58,7 +58,7 @@ jobs:
         
     - name: 🎯 Set Railway Project Context
       run: |
-        railway link -p ${{ secrets.RAILWAY_PROJECT_ID }}
+        railway link -p "placeholder_project_id"
         
     - name: 🔧 Set Environment Variables
       run: |
@@ -84,7 +84,7 @@ jobs:
       if: success()
       uses: Ilshidur/action-discord@master
       env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        DISCORD_WEBHOOK: "https://discord.com/api/webhooks/placeholder"
       with:
         args: |
           🚀 **Stakas MVP Viral Dashboard Deployed!**

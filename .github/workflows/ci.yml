@@ -11,18 +11,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cargar .env.dockerhub
-        id: dotenv
+      - name: Set Docker Hub credentials (placeholder)
         run: |
-          if [ -f .env.dockerhub ]; then
-            export $(grep -v '^#' .env.dockerhub | xargs)
-            echo "DOCKER_USER=$DOCKER_USER" >> $GITHUB_ENV
-            echo "DOCKER_PAT=$DOCKER_PAT" >> $GITHUB_ENV
-          fi
-      - name: Log in to Docker Hub
+          echo "DOCKER_USER=placeholder_user" >> $GITHUB_ENV
+          echo "DOCKER_PAT=placeholder_token" >> $GITHUB_ENV
+      - name: Log in to Docker Hub (placeholder)
         uses: docker/login-action@v3
         with:
-          # Asegúrate de definir DOCKER_USER y DOCKER_PAT como variables de entorno o secrets en GitHub Actions
           username: ${{ env.DOCKER_USER }}
           password: ${{ env.DOCKER_PAT }}
       - name: Set up Docker Buildx
