@@ -1,0 +1,52 @@
+# Plantilla de variables de entorno para Railway (production)
+
+# Core
+ENVIRONMENT=production
+DUMMY_MODE=false
+PORT=8501
+
+# Meta Ads
+META_ACCESS_TOKEN=your_meta_access_token
+META_APP_ID=your_meta_app_id
+META_APP_SECRET=your_meta_app_secret
+META_ACCOUNT_ID=your_meta_account_id
+META_PIXEL_ID=your_meta_pixel_id
+
+# YouTube
+YOUTUBE_API_KEY=your_youtube_api_key
+YOUTUBE_CLIENT_ID=your_youtube_client_id
+YOUTUBE_CLIENT_SECRET=your_youtube_client_secret
+
+# TikTok (opcional)
+TIKTOK_CLIENT_KEY=your_tiktok_client_key
+TIKTOK_CLIENT_SECRET=your_tiktok_client_secret
+TIKTOK_ACCESS_TOKEN=your_tiktok_access_token
+
+# Instagram (opcional)
+INSTAGRAM_ACCESS_TOKEN=your_instagram_access_token
+INSTAGRAM_BUSINESS_ACCOUNT_ID=your_instagram_business_account_id
+
+# Twitter (opcional)
+TWITTER_API_KEY=your_twitter_api_key
+TWITTER_API_SECRET=your_twitter_api_secret
+TWITTER_ACCESS_TOKEN=your_twitter_access_token
+TWITTER_ACCESS_TOKEN_SECRET=your_twitter_access_token_secret
+
+# OpenAI (opcional)
+OPENAI_API_KEY=your_openai_api_key
+
+# Database/Redis (si aplica)
+DATABASE_URL=your_database_url
+REDIS_URL=your_redis_url
+
+# Seguridad
+JWT_SECRET_KEY=your_jwt_secret
+API_SECRET_KEY=your_api_secret
+META_WEBHOOK_VERIFY_TOKEN=your_webhook_token
+
+# URLs de servicios internos
+ML_CORE_URL=http://ml-core:8000
+META_ADS_URL=http://meta-ads-manager:9000
+YOUTUBE_UPLOADER_URL=http://youtube-uploader:8001
+UNIFIED_ORCHESTRATOR_URL=http://unified-orchestrator:10000
+WEBHOOK_BASE_URL=${RAILWAY_STATIC_URL}
