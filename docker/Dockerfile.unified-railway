@@ -11,13 +11,13 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0 libsm6 libxext6 libxrender-dev \
     libgomp1 libgl1-mesa-dev libglu1-mesa-dev \
     libglfw3-dev libglew-dev \
-    supervisor \
+    # supervisor (eliminado)
     && rm -rf /var/lib/apt/lists/*
 # Copiar requirements
 COPY requirements.txt requirements-ml.txt ./
 # Instalar dependencias Python
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt -r requirements-ml.txt streamlit fastapi uvicorn supervisor
+    pip install --no-cache-dir -r requirements.txt -r requirements-ml.txt fastapi uvicorn
 # Copiar código fuente
 COPY ml_core /app/ml_core
 COPY device_farm /app/device_farm
@@ -27,8 +27,7 @@ COPY database /app/database
 COPY .env* /app/
 # Descargar COCO después de tener scripts disponibles
 RUN python /app/scripts/download_coco_dataset.py
-# Copiar configuración de supervisord
-COPY docker/supervisord.conf /etc/supervisord.conf
+## Supervisord eliminado
 # Crear directorios necesarios
 RUN mkdir -p /app/data/models/production /app/data/models/checkpoints /app/data/datasets/coco /app/logs /app/temp
 # Variables de entorno
@@ -36,8 +35,7 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV DUMMY_MODE=true
 ENV ENVIRONMENT=production
-ENV STREAMLIT_SERVER_HEADLESS=true
-ENV STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+## Streamlit eliminado
 # Exponer puertos
 EXPOSE 8000 8501
 # Healthcheck (opcional)
@@ -58,13 +56,13 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0 libsm6 libxext6 libxrender-dev \
     libgomp1 libgl1-mesa-dev libglu1-mesa-dev \
     libglfw3-dev libglew-dev \
-    supervisor \
+    # supervisor (eliminado)
     && rm -rf /var/lib/apt/lists/*
 # Copiar requirements
 COPY requirements.txt requirements-ml.txt ./
 # Instalar dependencias Python
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt -r requirements-ml.txt streamlit fastapi uvicorn supervisor
+    pip install --no-cache-dir -r requirements.txt -r requirements-ml.txt fastapi uvicorn
 # Copiar código fuente
 COPY ml_core /app/ml_core
 COPY device_farm /app/device_farm
@@ -72,8 +70,7 @@ COPY scripts /app/scripts
 COPY config /app/config
 COPY database /app/database
 COPY .env* /app/
-# Copiar configuración de supervisord
-COPY docker/supervisord.conf /etc/supervisord.conf
+## Supervisord eliminado
 # Crear directorios necesarios
 RUN mkdir -p /app/data/models/production /app/data/models/checkpoints /app/data/datasets/coco /app/logs /app/temp
 # Descargar COCO automáticamente en build (puede fallar en cloud por tamaño/tiempo)
@@ -83,13 +80,11 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV DUMMY_MODE=false
 ENV ENVIRONMENT=production
-ENV STREAMLIT_SERVER_HEADLESS=true
-ENV STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+## Streamlit eliminado
 # Exponer puertos
 EXPOSE 8000 8501
 # Healthcheck (opcional)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:8000/health || curl -f http://localhost:8501/_stcore/health || exit 1
-# Lanzar supervisord para ambos servicios
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["python", "dashboard_gradio.py", "--server.port", "8501", "--server.name", "0.0.0.0"]
 ENV STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
